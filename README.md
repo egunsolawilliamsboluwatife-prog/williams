@@ -94,3 +94,6 @@ A production-grade, conversion-focused multipage portfolio website for US local 
 | `PRIVACY_LAST_UPDATED` | `src/config/site.ts` | The date you publish the privacy notice. |
 | Domain (optional) | Vercel Domains | Your custom domain, if you buy one. |
 | FAQ answers (optional) | `src/content/faq.ts`, `faqPending` | Timeline, payments, revisions, ownership, no care plan, cancellation, what a small edit is. They stay hidden until you write them. |
+
+
+r

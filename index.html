@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <script>
+      (function() {
+        try {
+          var _f = window.fetch;
+          Object.defineProperty(window, 'fetch', {
+            get: function() { return _f; },
+            set: function(v) { _f = v; },
+            configurable: true,
+            enumerable: true
+          });
+        } catch (e) {
+          try {
+            var _f2 = window.fetch;
+            Object.defineProperty(Window.prototype, 'fetch', {
+              get: function() { return _f2; },
+              set: function(v) { _f2 = v; },
+              configurable: true,
+              enumerable: true
+            });
+          } catch (e2) {}
+        }
+        window.addEventListener('error', function(e) {
+          if (e && e.message && e.message.indexOf('fetch') !== -1 && e.message.indexOf('getter') !== -1) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+          }
+        }, true);
+      })();
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0B0F1A" />
+    <title>Williams | Websites for US local businesses</title>
+    <meta name="description" content="Custom websites for US local businesses, with booking, contact forms and SEO basics built in. 300+ websites delivered. Book a free 15-minute call." />
+    <meta property="og:title" content="Williams | Websites for US local businesses" />
+    <meta property="og:description" content="Custom websites for US local businesses, with booking, contact forms and SEO basics built in. 300+ websites delivered. Book a free 15-minute call." />
+    <meta property="og:url" content="%SITE_URL%/" />
+    <meta property="og:image" content="%SITE_URL%/williams-warm-grey.jpg" />
+    <meta property="og:image:width" content="1048" />
+    <meta property="og:image:height" content="592" />
+    <meta property="og:image:alt" content="Portrait of Williams, web designer" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preload" as="image" href="/williams-cutout.png" fetchpriority="high" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ProfessionalService",
+          "@id": "%SITE_URL%/#business",
+          "name": "Williams",
+          "description": "Web designer and builder of custom websites for US local businesses.",
+          "url": "%SITE_URL%/",
+          "email": "williams.the.tech@gmail.com",
+          "image": "%SITE_URL%/williams-warm-grey.jpg",
+          "areaServed": { "@type": "Country", "name": "United States" },
+          "sameAs": [
+            "https://web.facebook.com/profile.php?id=61594974237916",
+            "https://www.instagram.com/websitesbywilliam/",
+            "https://www.tiktok.com/@website.by.williams"
+          ],
+          "makesOffer": [
+            { "@type": "Offer", "name": "Launch website", "priceSpecification": { "@type": "PriceSpecification", "minPrice": 1000, "priceCurrency": "USD" } },
+            { "@type": "Offer", "name": "Growth website", "priceSpecification": { "@type": "PriceSpecification", "minPrice": 1500, "priceCurrency": "USD" } },
+            { "@type": "Offer", "name": "Signature website", "priceSpecification": { "@type": "PriceSpecification", "minPrice": 2300, "priceCurrency": "USD" } },
+            { "@type": "Offer", "name": "Care plan", "priceSpecification": { "@type": "UnitPriceSpecification", "price": 59, "priceCurrency": "USD", "unitText": "MONTH" } }
+          ]
+        },
+        { "@type": "WebSite", "@id": "%SITE_URL%/#website", "url": "%SITE_URL%/", "name": "Williams" }
+      ]
+    }
+    </script>
+  </head>
+  <body class="bg-ink text-bone antialiased selection:bg-ember selection:text-ink">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

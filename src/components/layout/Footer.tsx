@@ -72,6 +72,12 @@ export const Footer: React.FC = () => {
               Book a call
             </Link>
             <Link
+              to="/contact"
+              className="font-sans text-base text-bone-muted hover:text-bone transition-colors"
+            >
+              Contact & Intake
+            </Link>
+            <Link
               to="/privacy"
               className="font-sans text-base text-bone-muted hover:text-bone transition-colors"
             >

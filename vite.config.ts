@@ -76,9 +76,36 @@ Sitemap: ${origin}/sitemap.xml
   };
 }
 
+function devApiPlugin(): Plugin {
+  return {
+    name: "dev-api-plugin",
+    configureServer(server) {
+      server.middlewares.use((req, res, next) => {
+        if (
+          req.method === "POST" &&
+          (req.url === "/api/contact" || req.url === "/api/newsletter")
+        ) {
+          let body = "";
+          req.on("data", (chunk) => {
+            body += chunk;
+          });
+          req.on("end", () => {
+            console.log(`[Dev API Handler] Received ${req.url}:`, body);
+            res.setHeader("Content-Type", "application/json");
+            res.statusCode = 200;
+            res.end(JSON.stringify({ ok: true, devMode: true }));
+          });
+          return;
+        }
+        next();
+      });
+    },
+  };
+}
+
 export default defineConfig(({ command }) => {
   return {
-    plugins: [react(), tailwindcss(), siteConfigPlugin(command)],
+    plugins: [react(), tailwindcss(), siteConfigPlugin(command), devApiPlugin()],
     resolve: {
       alias: {
         "@": path.resolve(import.meta.dirname, "./src"),

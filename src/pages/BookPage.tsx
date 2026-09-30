@@ -2,7 +2,7 @@ import React from "react";
 import { Seo } from "../components/ui/Seo.tsx";
 import { AvailabilityDot } from "../components/ui/AvailabilityDot.tsx";
 import { BookingEmbed } from "../components/booking/BookingEmbed.tsx";
-import { ContactForm } from "../components/forms/ContactForm.tsx";
+import { ClientIntakeForm } from "../components/forms/ClientIntakeForm.tsx";
 import { GlassCard } from "../components/ui/GlassCard.tsx";
 import { SocialLinks } from "../components/ui/SocialLinks.tsx";
 import { CONTACT_EMAIL } from "../config/site.ts";
@@ -62,18 +62,18 @@ export const BookPage: React.FC = () => {
           </div>
         </section>
 
-        {/* 2. EMAIL FORM (Centered form panel) */}
-        <section className="py-24 border-t border-line">
-          <div className="max-w-[1240px] mx-auto px-5 md:px-8 lg:px-12">
-            <GlassCard id="message" className="max-w-[760px] mx-auto p-8 md:p-12">
+        {/* 2. PROJECT INTAKE FORM (Pre-flight checklist & guided fields) */}
+        <section id="message" className="py-24 border-t border-line">
+          <div className="max-w-[1040px] mx-auto px-5 md:px-8 lg:px-12">
+            <div className="text-center max-w-2xl mx-auto mb-10">
               <h2 className="font-display font-semibold text-3xl md:text-4xl text-bone tracking-tight mb-3">
-                Prefer to write?
+                Prefer to write? Submit your project details.
               </h2>
-              <p className="font-sans text-lg text-bone-muted leading-relaxed mb-8">
-                Tell me about your business and what you need. I'll reply by email.
+              <p className="font-sans text-lg text-bone-muted leading-relaxed">
+                Review the 5 items below and submit your specifications. Every inquiry lands directly in Egunsola Williams' inbox with a guaranteed response within 24 hours.
               </p>
-              <ContactForm />
-            </GlassCard>
+            </div>
+            <ClientIntakeForm />
           </div>
         </section>
 

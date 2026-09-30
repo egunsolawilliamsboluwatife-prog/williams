@@ -6,6 +6,7 @@ import { Footer } from "./Footer.tsx";
 import { NoiseOverlay } from "./NoiseOverlay.tsx";
 import { BookingProvider } from "../../context/BookingContext.tsx";
 import { BookingModal } from "../booking/BookingModal.tsx";
+import { NewsletterModal } from "../ui/NewsletterModal.tsx";
 
 export const SiteLayout: React.FC = () => {
   const location = useLocation();
@@ -29,6 +30,7 @@ export const SiteLayout: React.FC = () => {
 
         <Footer />
         <BookingModal />
+        <NewsletterModal />
       </div>
     </BookingProvider>
   );

@@ -28,6 +28,7 @@ export const Nav: React.FC = () => {
     { label: "Work", path: "/work" },
     { label: "Services & pricing", path: "/services" },
     { label: "About", path: "/about" },
+    { label: "Contact", path: "/contact" },
   ];
 
   return (

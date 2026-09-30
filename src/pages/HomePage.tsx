@@ -7,6 +7,7 @@ import { AvailabilityDot } from "../components/ui/AvailabilityDot.tsx";
 import { Button } from "../components/ui/Button.tsx";
 import { DeviceFrame } from "../components/ui/DeviceFrame.tsx";
 import { WhatYouGetBento } from "../components/home/WhatYouGetBento.tsx";
+import { ReviewsSection } from "../components/home/ReviewsSection.tsx";
 import { ProcessTimeline } from "../components/ui/ProcessTimeline.tsx";
 import { BookingCtaBand } from "../components/ui/BookingCtaBand.tsx";
 import { Reveal } from "../components/ui/Reveal.tsx";
@@ -381,7 +382,10 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 5. HOW IT WORKS (Timeline) */}
+      {/* 5. CLIENT REVIEWS (Real Outcomes & Google 5-Star Badges) */}
+      <ReviewsSection />
+
+      {/* 6. HOW IT WORKS (Timeline) */}
       <section className="py-24 md:py-32 border-t border-line">
         <div className="max-w-[1240px] mx-auto px-5 md:px-8 lg:px-12">
           <Reveal>

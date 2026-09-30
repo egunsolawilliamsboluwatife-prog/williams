@@ -18,6 +18,11 @@ export const SITE_URL: string = "";
 export const PRIVACY_LAST_UPDATED: string = "September 30, 2026";
 
 export const CONTACT_EMAIL = "williams.the.tech@gmail.com";
+export const WEB3FORMS_ACCESS_KEY: string =
+  (typeof import.meta !== "undefined" && import.meta.env && import.meta.env.VITE_WEB3FORMS_ACCESS_KEY) ||
+  (typeof process !== "undefined" && process.env && process.env.VITE_WEB3FORMS_ACCESS_KEY) ||
+  "";
+
 export const SOCIALS = {
   facebook: "https://web.facebook.com/profile.php?id=61594974237916",
   instagram: "https://www.instagram.com/websitesbywilliam/",

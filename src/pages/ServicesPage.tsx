@@ -4,7 +4,8 @@ import { Seo } from "../components/ui/Seo.tsx";
 import { PricingTier } from "../components/ui/PricingTier.tsx";
 import { GlassCard } from "../components/ui/GlassCard.tsx";
 import { Button } from "../components/ui/Button.tsx";
-import { StickyStack } from "../components/ui/StickyStack.tsx";
+import { WhatYouGetBento } from "../components/home/WhatYouGetBento.tsx";
+import { ReviewsSection } from "../components/home/ReviewsSection.tsx";
 import { FaqAccordion } from "../components/ui/FaqAccordion.tsx";
 import { BookingCtaBand } from "../components/ui/BookingCtaBand.tsx";
 import { Reveal } from "../components/ui/Reveal.tsx";
@@ -130,19 +131,29 @@ export const ServicesPage: React.FC = () => {
           </div>
         </section>
 
-        {/* 4. WHAT EVERY BUILD GETS (Sticky Stacking Cards) */}
+        {/* 4. WHAT EVERY BUILD GETS (Bento Grid) */}
         <section className="py-24 md:py-32 border-t border-line">
           <div className="max-w-[1240px] mx-auto px-5 md:px-8 lg:px-12">
-            <Reveal>
-              <h2 className="font-display font-semibold text-[clamp(2rem,1.4rem+2.4vw,3.25rem)] text-bone tracking-tight mb-16 opsz-72 text-center">
-                What every build gets
-              </h2>
-            </Reveal>
-            <StickyStack items={SERVICES_LIST} />
+            <div className="max-w-2xl mx-auto text-center mb-16">
+              <Reveal>
+                <h2 className="font-display font-semibold text-[clamp(2rem,1.4rem+2.4vw,3.25rem)] text-bone tracking-tight mb-4 opsz-72">
+                  What every build gets
+                </h2>
+              </Reveal>
+              <Reveal delay={0.06}>
+                <p className="font-sans text-lg md:text-xl text-bone-muted leading-relaxed">
+                  Every feature engineered to turn local visitors into paying clients — no templates, no bloat.
+                </p>
+              </Reveal>
+            </div>
+            <WhatYouGetBento />
           </div>
         </section>
 
-        {/* 5. FAQ (Accordion) */}
+        {/* 5. CLIENT REVIEWS */}
+        <ReviewsSection />
+
+        {/* 6. FAQ (Accordion) */}
         <section className="py-24 md:py-32 border-t border-line">
           <div className="max-w-[1240px] mx-auto px-5 md:px-8 lg:px-12">
             <Reveal>

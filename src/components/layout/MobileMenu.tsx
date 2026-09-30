@@ -91,6 +91,12 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
         >
           About
         </Link>
+        <Link
+          to="/contact"
+          className="h-14 flex items-center font-display font-semibold text-2xl text-bone hover:text-ember transition-colors"
+        >
+          Contact & Intake
+        </Link>
       </nav>
 
       <div className="pt-2">

@@ -316,7 +316,7 @@ export const BookingModal: React.FC = () => {
                 )}
                 <iframe
                   src="https://cal.com/jackson-williams?embed=true"
-                  title="Book with Jackson Williams on Cal.com"
+                  title="Book with Egunsola Williams on Cal.com"
                   loading="lazy"
                   className="w-full h-[620px] border-0"
                   onLoad={() => setCalIframeLoaded(true)}

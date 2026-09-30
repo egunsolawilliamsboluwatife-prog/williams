@@ -1,63 +1,24 @@
-import React, { lazy, Suspense, useRef, useState, useEffect } from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router";
 import { ArrowRight } from "@phosphor-icons/react";
 import { motion, useReducedMotion } from "motion/react";
 import { Seo } from "../components/ui/Seo.tsx";
 import { AvailabilityDot } from "../components/ui/AvailabilityDot.tsx";
 import { Button } from "../components/ui/Button.tsx";
-import { WMark } from "../components/ui/WMark.tsx";
 import { DeviceFrame } from "../components/ui/DeviceFrame.tsx";
-import { StickyStack } from "../components/ui/StickyStack.tsx";
+import { WhatYouGetBento } from "../components/home/WhatYouGetBento.tsx";
 import { ProcessTimeline } from "../components/ui/ProcessTimeline.tsx";
 import { BookingCtaBand } from "../components/ui/BookingCtaBand.tsx";
 import { Reveal } from "../components/ui/Reveal.tsx";
-import { useCanRender3D } from "../lib/useCanRender3D.ts";
 import { EASE_OUT } from "../lib/motion.ts";
-import { SERVICES_LIST } from "../content/services.ts";
 import { CASE_STUDIES } from "../content/work.ts";
 import { PRICING_TIERS } from "../content/pricing.ts";
 import { useBooking } from "../context/BookingContext.tsx";
-
-const HeroW3DLazy = lazy(() => import("../components/three/HeroW3D.tsx"));
 
 export const HomePage: React.FC = () => {
   const { openBookingModal } = useBooking();
   const heroSectionRef = useRef<HTMLElement>(null);
   const shouldReduceMotion = useReducedMotion();
-  const canRender3D = useCanRender3D();
-  const [w3dReady, setW3dReady] = useState(false);
-  const [load3DModule, setLoad3DModule] = useState(false);
-
-  // Lazy loading 3D canvas after idle callback and intersection
-  useEffect(() => {
-    if (!canRender3D) return;
-
-    const startIdleLoad = () => {
-      if ("requestIdleCallback" in window) {
-        window.requestIdleCallback(() => setLoad3DModule(true), {
-          timeout: 1200,
-        });
-      } else {
-        setTimeout(() => setLoad3DModule(true), 600);
-      }
-    };
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          startIdleLoad();
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "200px" }
-    );
-
-    if (heroSectionRef.current) {
-      observer.observe(heroSectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, [canRender3D]);
 
   const projectA = CASE_STUDIES[0];
   const projectB = CASE_STUDIES[1];
@@ -134,7 +95,7 @@ export const HomePage: React.FC = () => {
                 initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2, ease: EASE_OUT }}
-                className="flex flex-wrap items-center gap-4"
+                className="flex flex-wrap items-center gap-4 mb-8"
               >
                 <Button
                   type="button"
@@ -147,72 +108,84 @@ export const HomePage: React.FC = () => {
                   See the work
                 </Button>
               </motion.div>
+
+              {/* Quick Trust Highlights */}
+              <motion.div
+                initial={shouldReduceMotion ? false : { opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.28, ease: EASE_OUT }}
+                className="flex flex-wrap items-center gap-x-5 gap-y-2 pt-2 border-t border-line/50 text-xs font-mono text-bone-subtle"
+              >
+                <span className="flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-ember inline-block" />
+                  300+ sites delivered
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block" />
+                  100% custom code
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400 inline-block" />
+                  No off-the-shelf themes
+                </span>
+              </motion.div>
             </div>
 
-            {/* Right Media: Integrated 3D Monogram & Portrait Stage */}
-            <div className="lg:col-span-5 relative h-[400px] sm:h-[480px] lg:h-[min(640px,74dvh)] flex items-end justify-center">
-              {/* Layer 0: Ambient Backlight Glow */}
-              <div
-                className="absolute inset-0 flex items-center justify-center pointer-events-none -z-10"
-                aria-hidden="true"
-              >
-                <div className="w-[320px] h-[320px] sm:w-[420px] sm:h-[420px] rounded-full bg-ember/15 blur-[90px]" />
-              </div>
-
-              {/* Layer 1: W Monogram (2D Poster fallback & 3D Canvas) */}
-              <div
-                className="absolute inset-0 flex items-center justify-center pointer-events-none"
-                aria-hidden="true"
-              >
-                {/* 2D Poster fallback always renders first to prevent layout shift */}
-                <div
-                  className={`w-full max-w-[420px] aspect-[4.4/3.4] flex items-center justify-center transition-opacity duration-500 ${
-                    w3dReady ? "opacity-0" : "opacity-100"
-                  }`}
-                >
-                  <WMark variant="poster" size={340} />
-                </div>
-
-                {/* 3D Canvas lazy loaded */}
-                {canRender3D && load3DModule && (
-                  <Suspense fallback={null}>
-                    <div
-                      className={`absolute inset-0 transition-opacity duration-500 ${
-                        w3dReady ? "opacity-100" : "opacity-0"
-                      }`}
-                    >
-                      <HeroW3DLazy
-                        eventSource={heroSectionRef}
-                        onReady={() => setW3dReady(true)}
-                      />
-                    </div>
-                  </Suspense>
-                )}
-              </div>
-
-              {/* Layer 2: Hero Portrait (Large, centered, seamlessly layered) */}
+            {/* Right Media: Authentic Studio Portrait Card (Letter W removed) */}
+            <div className="lg:col-span-5 relative flex items-center justify-center pt-6 lg:pt-0">
               <motion.div
-                initial={shouldReduceMotion ? false : { opacity: 0, y: 24, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 0.8, delay: 0.25, ease: EASE_OUT }}
-                className="relative z-10 w-[clamp(250px,30vw,390px)] flex justify-center items-end"
+                initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.96, y: 16 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.15, ease: EASE_OUT }}
+                className="relative w-full max-w-[440px]"
               >
-                <img
-                  src="/williams-cutout-portrait.png"
-                  alt="Williams, founder and web engineer, smiling in front of the monogram"
-                  width={260}
-                  height={350}
-                  fetchPriority="high"
-                  decoding="async"
-                  referrerPolicy="no-referrer"
-                  className="w-full h-auto object-contain block drop-shadow-[0_24px_48px_rgba(0,0,0,0.8)]"
-                  style={{
-                    maskImage:
-                      "linear-gradient(to bottom, #000 80%, transparent 100%)",
-                    WebkitMaskImage:
-                      "linear-gradient(to bottom, #000 80%, transparent 100%)",
-                  }}
+                {/* Ambient Ember Backlight Glow */}
+                <div
+                  className="absolute -inset-4 rounded-[40px] bg-ember/15 blur-2xl pointer-events-none -z-10"
+                  aria-hidden="true"
                 />
+
+                {/* Studio Portrait Card */}
+                <div className="relative rounded-[32px] overflow-hidden border border-line bg-navy shadow-[var(--shadow-float)] aspect-[4/5] sm:aspect-[3/4] max-h-[580px] w-full group">
+                  <img
+                    src="/williams-navy-bokeh.jpg"
+                    alt="Egunsola Williams, founder and lead web engineer"
+                    width={1048}
+                    height={592}
+                    fetchPriority="high"
+                    decoding="async"
+                    className="w-full h-full object-cover object-[center_20%] group-hover:scale-102 transition-transform duration-700 ease-out"
+                  />
+
+                  {/* Gradient Lighting Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/20 to-transparent pointer-events-none" />
+
+                  {/* Top Floating Badge */}
+                  <div className="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none">
+                    <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-ink/75 backdrop-blur-md border border-white/10 text-xs font-sans font-medium text-bone shadow-sm">
+                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                      <span>Available for work</span>
+                    </span>
+                    <span className="px-3 py-1 rounded-full bg-ink/75 backdrop-blur-md border border-white/10 text-[11px] font-mono text-ember font-semibold shadow-sm">
+                      24/7 Booking
+                    </span>
+                  </div>
+
+                  {/* Bottom Founder Signature & Credential Card */}
+                  <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-ink/80 backdrop-blur-md border border-white/10 shadow-lg">
+                    <div className="flex items-center justify-between mb-1">
+                      <h3 className="font-display font-bold text-lg text-bone tracking-tight">
+                        Egunsola Williams
+                      </h3>
+                      <span className="text-[11px] font-mono text-emerald-400 bg-emerald-500/15 px-2 py-0.5 rounded font-medium border border-emerald-500/20">
+                        300+ Delivered
+                      </span>
+                    </div>
+                    <p className="font-sans text-xs text-bone-muted">
+                      Founder & Lead Web Engineer · Nationwide US
+                    </p>
+                  </div>
+                </div>
               </motion.div>
             </div>
           </div>
@@ -389,15 +362,22 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 4. WHAT YOU GET (Sticky Stacking Cards) */}
+      {/* 4. WHAT YOU GET (Bento Grid with Visual Illustrations) */}
       <section className="py-24 md:py-32 border-t border-line">
         <div className="max-w-[1240px] mx-auto px-5 md:px-8 lg:px-12">
-          <Reveal>
-            <h2 className="font-display font-semibold text-[clamp(2rem,1.4rem+2.4vw,3.25rem)] text-bone tracking-tight mb-16 opsz-72 text-center">
-              What you get
-            </h2>
-          </Reveal>
-          <StickyStack items={SERVICES_LIST} />
+          <div className="max-w-2xl mx-auto text-center mb-16">
+            <Reveal>
+              <h2 className="font-display font-semibold text-[clamp(2rem,1.4rem+2.4vw,3.25rem)] text-bone tracking-tight mb-4 opsz-72">
+                What you get
+              </h2>
+            </Reveal>
+            <Reveal delay={0.06}>
+              <p className="font-sans text-lg md:text-xl text-bone-muted leading-relaxed">
+                Everything required to turn local searchers into paying clients, engineered cleanly without bloated templates.
+              </p>
+            </Reveal>
+          </div>
+          <WhatYouGetBento />
         </div>
       </section>
 

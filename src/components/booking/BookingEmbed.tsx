@@ -93,7 +93,7 @@ export const BookingEmbed: React.FC = () => {
           )}
           <iframe
             src="https://cal.com/jackson-williams?embed=true"
-            title="Book with Jackson Williams on Cal.com"
+            title="Book with Egunsola Williams on Cal.com"
             loading="lazy"
             style={{ border: 0 }}
             width="100%"

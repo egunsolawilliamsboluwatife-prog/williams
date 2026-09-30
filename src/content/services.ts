@@ -1,33 +1,45 @@
 export interface ServiceItem {
   title: string;
+  tagline: string;
   body: string;
-  detail: string;
+  tier: string;
+  highlights: string[];
 }
 
 export const SERVICES_LIST: ServiceItem[] = [
   {
     title: "A site designed for your business",
-    body: "Every build starts from a blank page, laid out around what your customers need to see and do. No off-the-shelf theme.",
-    detail: "Every tier",
-  },
-  {
-    title: "Motion that feels expensive",
-    body: "Scroll motion is part of the build. Signature adds a premium motion or 3D touch, like the ones on this site.",
-    detail: "Premium motion and 3D on Signature",
+    tagline: "100% custom from a blank canvas",
+    body: "Every build starts from scratch, designed around how your local customers actually buy. Zero off-the-shelf templates or generic themes.",
+    tier: "All tiers",
+    highlights: ["Custom tailored design", "Mobile-first thumb navigation", "Under 1.2s load speeds"],
   },
   {
     title: "Booking and quote forms",
-    body: "Visitors can book, ask for a quote or reach you from their phone in a couple of taps, and the message lands in your inbox.",
-    detail: "Booking or contact on Launch, booking and quote forms on Growth and Signature",
+    tagline: "Turn visitors into scheduled clients",
+    body: "Visitors can book a time, request a quote, or call you from their phone in two taps. Every lead lands instantly in your inbox.",
+    tier: "All tiers",
+    highlights: ["1-tap phone booking", "Instant email/SMS notification", "Spam protection built in"],
   },
   {
-    title: "Found on Google",
-    body: "Basic SEO on every site. Growth adds local SEO basics. Signature also sets up your Google Business Profile.",
-    detail: "Google Business Profile setup on Signature",
+    title: "Found on Google & Local Maps",
+    tagline: "Be the top choice in your local area",
+    body: "Local SEO architecture, meta tags, and structured schema so your service appears when nearby customers search for what you do.",
+    tier: "Growth & Signature",
+    highlights: ["Google Business Profile setup", "Local search schema", "Fast indexation on launch"],
   },
   {
-    title: "Looked after after launch",
-    body: "The care plan covers hosting, SSL, uptime monitoring, small edits and fixes, so your site keeps working while you run your business.",
-    detail: "$59/month",
+    title: "Motion that feels expensive",
+    tagline: "Elevate your brand above competitors",
+    body: "Smooth scroll interactions, subtle depth, and tactile micro-animations that make your business feel premium, established, and trustworthy.",
+    tier: "Signature tier",
+    highlights: ["Fluid scroll choreography", "Hardware-accelerated 60fps", "Interactive 3D touches"],
+  },
+  {
+    title: "Worry-free care after launch",
+    tagline: "Hosting, security, and monthly edits",
+    body: "Fast cloud hosting, 256-bit SSL, daily backups, and ongoing content updates so you never have to stress about tech.",
+    tier: "Optional $59/mo plan",
+    highlights: ["99.9% uptime monitoring", "SSL security & maintenance", "Small edits and fixes included"],
   },
 ];

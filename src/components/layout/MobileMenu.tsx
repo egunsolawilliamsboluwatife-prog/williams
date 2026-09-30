@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router";
 import { SocialLinks } from "../ui/SocialLinks.tsx";
+import { Button } from "../ui/Button.tsx";
+import { useBooking } from "../../context/BookingContext.tsx";
 
 interface MobileMenuProps {
   isOpen: boolean;
@@ -16,6 +18,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
   const location = useLocation();
   const menuRef = useRef<HTMLDivElement>(null);
   const firstLinkRef = useRef<HTMLAnchorElement>(null);
+  const { openBookingModal } = useBooking();
 
   // Close on route change
   useEffect(() => {
@@ -90,9 +93,23 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
         </Link>
       </nav>
 
-      <div className="w-full h-[1px] bg-line my-2" />
-
       <div className="pt-2">
+        <Button
+          type="button"
+          onClick={() => {
+            onClose();
+            openBookingModal("compare");
+          }}
+          variant="primary"
+          className="w-full h-12"
+        >
+          Book a call
+        </Button>
+      </div>
+
+      <div className="w-full h-[1px] bg-line my-1" />
+
+      <div className="pt-1">
         <SocialLinks />
       </div>
     </div>

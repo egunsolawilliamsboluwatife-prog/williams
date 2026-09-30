@@ -45,7 +45,7 @@ export const WorkPage: React.FC = () => {
     <>
       <Seo
         title="Work | Williams"
-        description="Four live websites for US local businesses: an Austin event rental company, a Houston barbershop, a Central Ohio CPA and a Tampa cleaning company."
+        description="Eleven live websites for US businesses: boutique law firms, CPA practices, luxury barbershops, and specialized studios. Designed and built by Williams."
         path="/work"
       />
 
@@ -58,7 +58,7 @@ export const WorkPage: React.FC = () => {
                 Work
               </h1>
               <p className="font-sans text-xl md:text-2xl text-bone-muted leading-relaxed max-w-[65ch]">
-                Four live sites for US local businesses. Drag the ring, or pick a project.
+                Eleven live sites for US businesses. Drag the ring, or pick a project.
               </p>
             </div>
 
@@ -80,7 +80,7 @@ export const WorkPage: React.FC = () => {
           <div className="max-w-[1240px] mx-auto px-5 md:px-8 lg:px-12">
             <Reveal>
               <h2 className="font-display font-semibold text-[clamp(2rem,1.4rem+2.4vw,3.25rem)] text-bone tracking-tight mb-12 opsz-72">
-                All four projects
+                All client projects
               </h2>
             </Reveal>
 

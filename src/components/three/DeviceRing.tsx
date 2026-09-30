@@ -187,7 +187,7 @@ export const DeviceRing: React.FC = () => {
   const handleIndexChange = useCallback((idx: number) => {
     setActiveIndex(idx);
     const p = CASE_STUDIES[idx];
-    setAnnouncement(`${p.name}, ${idx + 1} of 4`);
+    setAnnouncement(`${p.name}, ${idx + 1} of ${STATION_COUNT}`);
   }, []);
 
   const handleStationClick = useCallback(

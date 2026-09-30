@@ -16,10 +16,12 @@ import { EASE_OUT } from "../lib/motion.ts";
 import { SERVICES_LIST } from "../content/services.ts";
 import { CASE_STUDIES } from "../content/work.ts";
 import { PRICING_TIERS } from "../content/pricing.ts";
+import { useBooking } from "../context/BookingContext.tsx";
 
 const HeroW3DLazy = lazy(() => import("../components/three/HeroW3D.tsx"));
 
 export const HomePage: React.FC = () => {
+  const { openBookingModal } = useBooking();
   const heroSectionRef = useRef<HTMLElement>(null);
   const shouldReduceMotion = useReducedMotion();
   const canRender3D = useCanRender3D();
@@ -57,15 +59,15 @@ export const HomePage: React.FC = () => {
     return () => observer.disconnect();
   }, [canRender3D]);
 
-  const mimi = CASE_STUDIES[0];
-  const barber = CASE_STUDIES[1];
-  const cpa = CASE_STUDIES[2];
-  const cleaning = CASE_STUDIES[3];
+  const projectA = CASE_STUDIES[0];
+  const projectB = CASE_STUDIES[1];
+  const projectC = CASE_STUDIES[2];
+  const projectD = CASE_STUDIES[3];
 
   const processSteps = [
     {
       title: "Book a call",
-      body: "Pick any 15-minute slot on Google Meet. The calendar is open 24/7.",
+      body: "Pick any 15-minute slot on Google Meet or Cal.com. The calendar is open 24/7.",
     },
     {
       title: "Pick your tier",
@@ -113,7 +115,7 @@ export const HomePage: React.FC = () => {
                 initial={shouldReduceMotion ? false : { y: 20 }}
                 animate={{ y: 0 }}
                 transition={{ duration: 0.7, ease: EASE_OUT }}
-                className="font-display font-bold text-[clamp(2.75rem,1.6rem+4.6vw,5.5rem)] leading-[0.98] tracking-[-0.035em] text-bone mb-6 text-balance opsz-96"
+                className="font-display font-bold text-[clamp(2.35rem,1.3rem+3.5vw,4.25rem)] leading-[1.04] tracking-[-0.03em] text-bone mb-6 text-balance opsz-96 max-w-[20ch]"
               >
                 Websites built to win local customers.
               </motion.h1>
@@ -134,7 +136,11 @@ export const HomePage: React.FC = () => {
                 transition={{ duration: 0.6, delay: 0.2, ease: EASE_OUT }}
                 className="flex flex-wrap items-center gap-4"
               >
-                <Button to="/book" variant="primary">
+                <Button
+                  type="button"
+                  onClick={() => openBookingModal("compare")}
+                  variant="primary"
+                >
                   Book a call
                 </Button>
                 <Button to="/work" variant="secondary">
@@ -143,9 +149,17 @@ export const HomePage: React.FC = () => {
               </motion.div>
             </div>
 
-            {/* Right Media (cols 8-12, height min(640px, 70dvh)) */}
-            <div className="lg:col-span-5 relative h-[360px] sm:h-[460px] lg:h-[min(640px,70dvh)] flex items-end justify-center">
-              {/* Back Layer: W Monogram (Poster or 3D Canvas) */}
+            {/* Right Media: Integrated 3D Monogram & Portrait Stage */}
+            <div className="lg:col-span-5 relative h-[400px] sm:h-[480px] lg:h-[min(640px,74dvh)] flex items-end justify-center">
+              {/* Layer 0: Ambient Backlight Glow */}
+              <div
+                className="absolute inset-0 flex items-center justify-center pointer-events-none -z-10"
+                aria-hidden="true"
+              >
+                <div className="w-[320px] h-[320px] sm:w-[420px] sm:h-[420px] rounded-full bg-ember/15 blur-[90px]" />
+              </div>
+
+              {/* Layer 1: W Monogram (2D Poster fallback & 3D Canvas) */}
               <div
                 className="absolute inset-0 flex items-center justify-center pointer-events-none"
                 aria-hidden="true"
@@ -156,7 +170,7 @@ export const HomePage: React.FC = () => {
                     w3dReady ? "opacity-0" : "opacity-100"
                   }`}
                 >
-                  <WMark variant="poster" size={320} />
+                  <WMark variant="poster" size={340} />
                 </div>
 
                 {/* 3D Canvas lazy loaded */}
@@ -176,22 +190,22 @@ export const HomePage: React.FC = () => {
                 )}
               </div>
 
-              {/* Front Layer: Hero Cutout Portrait */}
+              {/* Layer 2: Hero Portrait (Large, centered, seamlessly layered) */}
               <motion.div
-                initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={shouldReduceMotion ? false : { opacity: 0, y: 24, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ duration: 0.8, delay: 0.25, ease: EASE_OUT }}
-                className="relative z-10 w-[clamp(280px,38vw,560px)] flex justify-center"
+                className="relative z-10 w-[clamp(250px,30vw,390px)] flex justify-center items-end"
               >
                 <img
-                  src="/williams-cutout.png"
-                  alt="Williams, smiling, in a black T-shirt"
-                  width={665}
-                  height={375}
+                  src="/williams-cutout-portrait.png"
+                  alt="Williams, founder and web engineer, smiling in front of the monogram"
+                  width={260}
+                  height={350}
                   fetchPriority="high"
                   decoding="async"
                   referrerPolicy="no-referrer"
-                  className="w-full h-auto object-contain block"
+                  className="w-full h-auto object-contain block drop-shadow-[0_24px_48px_rgba(0,0,0,0.8)]"
                   style={{
                     maskImage:
                       "linear-gradient(to bottom, #000 80%, transparent 100%)",
@@ -220,8 +234,9 @@ export const HomePage: React.FC = () => {
               </div>
               <div className="lg:col-span-4 pb-3">
                 <p className="font-sans text-xl text-bone-muted leading-relaxed text-pretty">
-                  From event rental companies to barbers, accountants and
-                  cleaners. Four of them are below, live and clickable.
+                  From corporate law firms and CPA practices to luxury
+                  barbershops and boutique beauty studios. Four of them are below,
+                  live and clickable.
                 </p>
               </div>
             </div>
@@ -239,26 +254,26 @@ export const HomePage: React.FC = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-8">
-            {/* Card A: Mimi's Party Palace (cols 1-7, row 1) */}
+            {/* Card A: Barber's Society (cols 1-7, row 1) */}
             <div className="lg:col-span-7">
               <Reveal>
                 <Link
-                  to={`/work/${mimi.slug}`}
+                  to={`/work/${projectA.slug}`}
                   className="group block glass p-6 md:p-8 rounded-[24px] transition-transform duration-300 hover:-translate-y-1.5 focus-visible:ring-2 focus-visible:ring-ember outline-none"
                 >
                   <div className="mb-6">
                     <DeviceFrame
                       kind="laptop"
-                      src={mimi.desktopImage}
-                      fallbackSrc={mimi.desktopFallback}
-                      alt={mimi.altDesktop}
+                      src={projectA.desktopImage}
+                      fallbackSrc={projectA.desktopFallback}
+                      alt={projectA.altDesktop}
                     />
                   </div>
                   <h3 className="font-display font-bold text-2xl text-bone mb-1 tracking-tight">
-                    {mimi.name}
+                    {projectA.name}
                   </h3>
                   <p className="font-sans text-sm text-bone-subtle mb-4">
-                    {mimi.metaLine}
+                    {projectA.metaLine}
                   </p>
                   <span className="inline-flex items-center gap-1.5 font-sans font-medium text-ember text-sm group-hover:translate-x-1 transition-transform">
                     <span>View case study</span>
@@ -268,29 +283,29 @@ export const HomePage: React.FC = () => {
               </Reveal>
             </div>
 
-            {/* Card B: Elite Barber (cols 8-12, row 1-2) */}
+            {/* Card B: Best CPA Services (cols 8-12, row 1-2) */}
             <div className="lg:col-span-5 lg:row-span-2">
               <Reveal delay={0.06}>
                 <Link
-                  to={`/work/${barber.slug}`}
+                  to={`/work/${projectB.slug}`}
                   className="group block bg-navy border border-line p-6 md:p-8 rounded-[24px] h-full flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1.5 focus-visible:ring-2 focus-visible:ring-ember outline-none"
                 >
                   <div className="flex justify-center items-center py-6">
                     <div className="w-[75%] max-w-[260px]">
                       <DeviceFrame
                         kind="phone"
-                        src={barber.mobileImage}
-                        fallbackSrc={barber.mobileFallback}
-                        alt={barber.altMobile}
+                        src={projectB.mobileImage}
+                        fallbackSrc={projectB.mobileFallback}
+                        alt={projectB.altMobile}
                       />
                     </div>
                   </div>
                   <div className="pt-4">
                     <h3 className="font-display font-bold text-2xl text-bone mb-1 tracking-tight">
-                      {barber.name}
+                      {projectB.name}
                     </h3>
                     <p className="font-sans text-sm text-bone-subtle mb-4">
-                      {barber.metaLine}
+                      {projectB.metaLine}
                     </p>
                     <span className="inline-flex items-center gap-1.5 font-sans font-medium text-ember text-sm group-hover:translate-x-1 transition-transform">
                       <span>View case study</span>
@@ -301,29 +316,29 @@ export const HomePage: React.FC = () => {
               </Reveal>
             </div>
 
-            {/* Card C: Quality & Affordable Cleaning (cols 1-3, row 2) */}
+            {/* Card C: Best Makeup & Best Lashes (cols 1-3, row 2) */}
             <div className="lg:col-span-4">
               <Reveal delay={0.12}>
                 <Link
-                  to={`/work/${cleaning.slug}`}
+                  to={`/work/${projectC.slug}`}
                   className="group block glass p-6 md:p-8 rounded-[24px] h-full flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1.5 focus-visible:ring-2 focus-visible:ring-ember outline-none"
                 >
                   <div className="flex justify-center mb-6">
                     <div className="w-[70%] max-w-[200px]">
                       <DeviceFrame
                         kind="phone"
-                        src={cleaning.mobileImage}
-                        fallbackSrc={cleaning.mobileFallback}
-                        alt={cleaning.altMobile}
+                        src={projectC.mobileImage}
+                        fallbackSrc={projectC.mobileFallback}
+                        alt={projectC.altMobile}
                       />
                     </div>
                   </div>
                   <div>
                     <h3 className="font-display font-bold text-xl text-bone mb-1 tracking-tight">
-                      {cleaning.name}
+                      {projectC.name}
                     </h3>
                     <p className="font-sans text-sm text-bone-subtle mb-4">
-                      {cleaning.metaLine}
+                      {projectC.metaLine}
                     </p>
                     <span className="inline-flex items-center gap-1.5 font-sans font-medium text-ember text-sm group-hover:translate-x-1 transition-transform">
                       <span>View case study</span>
@@ -334,27 +349,27 @@ export const HomePage: React.FC = () => {
               </Reveal>
             </div>
 
-            {/* Card D: Mid Ohio CPA (cols 4-7, row 2) */}
+            {/* Card D: George Dimov CPA (cols 4-7, row 2) */}
             <div className="lg:col-span-3">
               <Reveal delay={0.18}>
                 <Link
-                  to={`/work/${cpa.slug}`}
+                  to={`/work/${projectD.slug}`}
                   className="group block glass p-6 md:p-8 rounded-[24px] h-full flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1.5 focus-visible:ring-2 focus-visible:ring-ember outline-none"
                 >
                   <div className="mb-6">
                     <DeviceFrame
                       kind="laptop"
-                      src={cpa.desktopImage}
-                      fallbackSrc={cpa.desktopFallback}
-                      alt={cpa.altDesktop}
+                      src={projectD.desktopImage}
+                      fallbackSrc={projectD.desktopFallback}
+                      alt={projectD.altDesktop}
                     />
                   </div>
                   <div>
                     <h3 className="font-display font-bold text-xl text-bone mb-1 tracking-tight">
-                      {cpa.name}
+                      {projectD.name}
                     </h3>
                     <p className="font-sans text-sm text-bone-subtle mb-4">
-                      {cpa.metaLine}
+                      {projectD.metaLine}
                     </p>
                     <span className="inline-flex items-center gap-1.5 font-sans font-medium text-ember text-sm group-hover:translate-x-1 transition-transform">
                       <span>View case study</span>

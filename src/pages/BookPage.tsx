@@ -12,7 +12,7 @@ export const BookPage: React.FC = () => {
     <>
       <Seo
         title="Book a call | Williams"
-        description="Book a free 15-minute Google Meet call with Williams. Available 24/7, so pick any time. Or send a message."
+        description="Book a free 15-minute call with Williams via Google Meet or Cal.com. Available 24/7, pick any time. Or send an inquiry message."
         path="/book"
         image="/williams-warm-grey.jpg"
       />
@@ -22,7 +22,7 @@ export const BookPage: React.FC = () => {
         <section className="pb-24">
           <div className="max-w-[1240px] mx-auto px-5 md:px-8 lg:px-12">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-              {/* Left Column (cols 1-4 at lg) */}
+              {/* Left Column (cols 1-5 at lg) */}
               <div className="lg:col-span-5 flex flex-col items-start">
                 <AvailabilityDot label="Available 24/7" className="mb-6" />
 
@@ -31,12 +31,12 @@ export const BookPage: React.FC = () => {
                 </h1>
 
                 <p className="font-sans text-xl text-bone-muted leading-relaxed mb-4">
-                  Pick any time, any day. It's a Google Meet call, and the link
-                  lands in your inbox as soon as you book.
+                  Pick any time, any day. Choose between Google Meet or Cal.com,
+                  and the invite lands in your inbox as soon as you book.
                 </p>
 
                 <p className="font-sans text-sm text-bone-subtle mb-10">
-                  Times show in your own time zone.
+                  Times automatically adjust to your local time zone.
                 </p>
 
                 {/* Portrait (hidden below lg so calendar comes first on phones) */}
@@ -54,7 +54,7 @@ export const BookPage: React.FC = () => {
                 </div>
               </div>
 
-              {/* Right Column: Calendar Embed (cols 5-12 at lg) */}
+              {/* Right Column: Calendar Embed (cols 6-12 at lg) */}
               <div className="lg:col-span-7 w-full">
                 <BookingEmbed />
               </div>

@@ -8,8 +8,10 @@ import { Button } from "../components/ui/Button.tsx";
 import { DeviceFrame } from "../components/ui/DeviceFrame.tsx";
 import { BookingCtaBand } from "../components/ui/BookingCtaBand.tsx";
 import { Reveal } from "../components/ui/Reveal.tsx";
+import { useBooking } from "../context/BookingContext.tsx";
 
 export const CaseStudyPage: React.FC = () => {
+  const { openBookingModal } = useBooking();
   const { slug } = useParams<{ slug: string }>();
 
   const projectIndex = CASE_STUDIES.findIndex((p) => p.slug === slug);
@@ -54,7 +56,11 @@ export const CaseStudyPage: React.FC = () => {
               <Button href={project.liveUrl} variant="primary">
                 Visit live site
               </Button>
-              <Button to="/book" variant="secondary">
+              <Button
+                type="button"
+                onClick={() => openBookingModal("compare")}
+                variant="secondary"
+              >
                 Book a call
               </Button>
             </div>

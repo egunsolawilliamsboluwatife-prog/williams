@@ -4,12 +4,14 @@ import { List, X } from "@phosphor-icons/react";
 import { WMark } from "../ui/WMark.tsx";
 import { Button } from "../ui/Button.tsx";
 import { MobileMenu } from "./MobileMenu.tsx";
+import { useBooking } from "../../context/BookingContext.tsx";
 
 export const Nav: React.FC = () => {
   const location = useLocation();
   const [isCondensed, setIsCondensed] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const { openBookingModal } = useBooking();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -82,9 +84,10 @@ export const Nav: React.FC = () => {
           {/* Right Action: CTA & Mobile Hamburger */}
           <div className="flex items-center gap-2">
             <Button
-              to="/book"
+              type="button"
+              onClick={() => openBookingModal("compare")}
               variant="primary"
-              className="h-10 md:h-11 px-4 md:px-7 text-sm md:text-base"
+              className="h-10 md:h-11 px-4 md:px-7 text-sm md:text-base cursor-pointer"
             >
               Book a call
             </Button>

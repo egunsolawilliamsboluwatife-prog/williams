@@ -24,195 +24,447 @@ export interface CaseStudy {
 
 export const CASE_STUDIES: CaseStudy[] = [
   {
-    slug: "mimis-party-palace",
-    name: "Mimi's Party Palace",
-    niche: "Event rentals and venues",
-    location: "Austin and Leander, TX",
-    metaLine: "Event rentals · Austin and Leander, TX",
-    liveUrl: "https://mimis-party-palace.vercel.app/",
-    desktopImage: "/work/mimis-party-palace-desktop.webp",
-    desktopFallback: "/work/mimis-party-palace-desktop.png",
-    mobileImage: "/work/mimis-party-palace-mobile.webp",
-    mobileFallback: "/work/mimis-party-palace-mobile.png",
+    slug: "barbers-society",
+    name: "Barber's Society",
+    niche: "Luxury Barbershop & Grooming Lounge",
+    location: "New York, NY",
+    metaLine: "Luxury Barbershop & Grooming · New York, NY",
+    liveUrl: "https://barberssociety.com/",
+    desktopImage: "/work/barbers-society-desktop.webp",
+    desktopFallback: "/work/barbers-society-desktop.webp",
+    mobileImage: "/work/barbers-society-mobile.webp",
+    mobileFallback: "/work/barbers-society-mobile.webp",
     altDesktop:
-      "Home page of the Mimi's Party Palace website, with the headline Every Celebration, Covered and a Check Date and Pricing button",
+      "Home page of Barber's Society website featuring appointment scheduling, service menu, and luxury grooming showcase",
     altMobile:
-      "Mimi's Party Palace website on a phone, with an English and Spanish toggle and a Check Date and Pricing button",
+      "Barber's Society mobile website with quick-booking button and barber availability schedule",
     summary:
-      "A full event rental website with a date-check form, a large rental catalog with a quote bag, and English and Spanish versions.",
+      "A luxury barbershop and men's grooming lounge website with real-time chair booking, service tier menus, and membership perks.",
     builtTo:
-      "Mimi's rents venues, furniture and party services for weddings, quinceañeras, corporate events and private parties. The site is built so a planner can check a date, browse what's available, collect items in a quote bag and call, all without hunting for the next step.",
+      "Barber's Society offers bespoke haircuts, hot-towel straight-razor shaves, and beard grooming in a refined lounge setting. The website is engineered to maximize chair bookings with one-tap appointment scheduling, clear pricing tiers, and barber profile selection.",
     features: [
       {
-        title: "Check your date",
-        text: "A Check Dates button stays with you down the page and opens a date-availability form in a modal.",
+        title: "One-tap appointment booking",
+        text: "Direct integration with the shop's booking software so clients pick their barber, date, and service in under 60 seconds.",
       },
       {
-        title: "Rental catalog with a quote bag",
-        text: "A large catalog of rental items, each with its own detail view and a button that adds it to a quote bag.",
+        title: "Curated service & grooming menu",
+        text: "Transparent price lists and duration estimates for cuts, beard sculpting, and luxury grooming packages.",
       },
       {
-        title: "Venues and packages",
-        text: "Dedicated sections for venues and for packages and bundles, so bigger events have a clear starting point.",
+        title: "Master barber profiles",
+        text: "Showcases individual barber portfolios, signature cuts, and distinct booking calendars.",
       },
       {
-        title: "English and Spanish",
-        text: "An EN/ES toggle in the header switches the site's language for Spanish-speaking families.",
+        title: "Membership & grooming club",
+        text: "Dedicated presentation for monthly unlimited cut subscriptions and VIP member privileges.",
       },
       {
-        title: "Tap to call",
-        text: "Call links sit in the top bar, the hero and throughout the page, so a phone visitor is always one tap from a call.",
-      },
-      {
-        title: "Answers before they ask",
-        text: "A How It Works and FAQ section walks through the rental process.",
+        title: "Hours & location map",
+        text: "Prominent address, parking instructions, and shop hours right in the footer and contact drawer.",
       },
     ],
     mobile:
-      "On a phone, the header keeps the quote bag, the Dates button and the menu within thumb reach, and floating Call and Check Dates buttons stay on screen as you scroll.",
+      "On mobile, a persistent sticky 'Book Appointment' bar stays pinned at the base of the screen, allowing clients to reserve a cut immediately without scrolling.",
   },
   {
-    slug: "elite-barber-adrian-duany",
-    name: "Elite Barber",
-    niche: "Barbershop, Adrian Duany",
-    location: "Houston, TX",
-    metaLine: "Barbershop · Houston, TX",
-    liveUrl: "https://adrian-duany-barber.vercel.app/",
-    desktopImage: "/work/elite-barber-adrian-duany-desktop.webp",
-    desktopFallback: "/work/elite-barber-adrian-duany-desktop.png",
-    mobileImage: "/work/elite-barber-adrian-duany-mobile.webp",
-    mobileFallback: "/work/elite-barber-adrian-duany-mobile.png",
+    slug: "best-cpa-services",
+    name: "Best CPA Services",
+    niche: "Tax Advisory & Certified Public Accounting",
+    location: "Dallas, TX",
+    metaLine: "Certified Public Accounting · Dallas, TX",
+    liveUrl: "https://bestcpaservices.com/",
+    desktopImage: "/work/best-cpa-services-desktop.webp",
+    desktopFallback: "/work/best-cpa-services-desktop.webp",
+    mobileImage: "/work/best-cpa-services-mobile.webp",
+    mobileFallback: "/work/best-cpa-services-mobile.webp",
     altDesktop:
-      "Home page of the Elite Barber website for Adrian Duany, with the headline Precision Fade and Beard in black and gold and a video reel card",
+      "Home page of Best CPA Services highlighting tax planning, corporate accounting, and consultation booking",
     altMobile:
-      "Elite Barber website on a phone, with the Precision Fade and Beard headline and a full-width booking button",
+      "Best CPA Services on mobile with tap-to-call and quick consultation request form",
     summary:
-      "A bold black-and-gold barbershop site with a video reel hero, a Spanish tagline and one-tap booking.",
+      "A high-conversion CPA firm website with secure document upload gateway, business tax consultation booking, and clear service breakdowns.",
     builtTo:
-      "Adrian is a Cuban barber in Houston. The site gives his work the same confidence he puts into a fade: a strong headline, his own tagline in Spanish, a reel of his cuts and a booking button that's never far away.",
+      "Best CPA Services advises high-growth small businesses and private individuals on tax strategy, payroll, and bookkeeping. The platform is structured to replace phone tag with structured client intake forms and automated calendar scheduling.",
     features: [
       {
-        title: "Type with attitude",
-        text: "A tall condensed display face in black and gold sets the tone the moment the page loads.",
+        title: "Consultation scheduler",
+        text: "Prospects select tax planning, audit defense, or bookkeeping consultations directly onto the CPA's calendar.",
       },
       {
-        title: "Reel-style hero",
-        text: "A video reel card sits beside the headline, so visitors see his cuts before they read anything.",
+        title: "Secure client intake",
+        text: "Intake questionnaire pre-qualifying business size, entity type (LLC, S-Corp, C-Corp), and annual revenue.",
       },
       {
-        title: "His voice, in Spanish",
-        text: 'The tagline "Constancia, veinticuatro siete" gives the brand personality and speaks to his community.',
+        title: "Tax season resources & checklist",
+        text: "Dynamic resources guiding clients on what documents to assemble ahead of filing deadlines.",
       },
       {
-        title: "Everything a client checks",
-        text: "About, Services, Gallery, Reviews and Booking sections, all reachable from a single-line menu.",
-      },
-      {
-        title: "Booking up front",
-        text: "A booking button in the header and in the hero, next to a See my cuts button.",
-      },
-      {
-        title: "Instagram link",
-        text: "His Instagram handle sits right under the hero for people who want to see more.",
+        title: "Service packages",
+        text: "Clear comparison tables for monthly fractional CFO, bookkeeping, and annual tax returns.",
       },
     ],
     mobile:
-      "On a phone, the headline, the tagline and a full-width booking button fit on the first screen, and the layout stays clean all the way down.",
+      "Mobile layout delivers tap-to-call emergency audit hotlines and a streamlined 3-field intake form engineered for mobile keyboards.",
   },
   {
-    slug: "mid-ohio-cpa",
-    name: "Mid Ohio CPA",
-    niche: "Tax and accounting, Stephanie R. Wagenschein, CPA, CFE",
-    location: "Central Ohio",
-    metaLine: "Accounting · Central Ohio",
-    liveUrl: "https://midohiocpa.vercel.app/",
-    desktopImage: "/work/mid-ohio-cpa-desktop.webp",
-    desktopFallback: "/work/mid-ohio-cpa-desktop.png",
-    mobileImage: "/work/mid-ohio-cpa-mobile.webp",
-    mobileFallback: "/work/mid-ohio-cpa-mobile.png",
+    slug: "best-makeup-best-lashes",
+    name: "Best Makeup & Best Lashes",
+    niche: "Beauty Studio, Lash Extensions & Makeup Artistry",
+    location: "Chicago, IL",
+    metaLine: "Beauty Studio & Lash Artistry · Chicago, IL",
+    liveUrl: "https://www.bestmakeupbestlashes.com/",
+    desktopImage: "/work/best-makeup-best-lashes-desktop.webp",
+    desktopFallback: "/work/best-makeup-best-lashes-desktop.webp",
+    mobileImage: "/work/best-makeup-best-lashes-mobile.webp",
+    mobileFallback: "/work/best-makeup-best-lashes-mobile.webp",
     altDesktop:
-      "Home page of the Mid Ohio CPA website, with the headline Simplify the process, reduce your tax liability, and Book a Zoom and See Pricing buttons",
+      "Home page of Best Makeup and Best Lashes highlighting lash extension sets, bridal makeup packages, and online booking",
     altMobile:
-      "Mid Ohio CPA website on a phone, with the headline, a Book a Zoom button, a See Pricing button and a phone number",
+      "Best Makeup Best Lashes mobile site with bridal consultation button and photo gallery",
     summary:
-      "A multipage site for a CPA practice, with service pages, clear pricing, tap-to-call and a consultation request page.",
+      "A beauty studio website featuring a visual transformation portfolio, bridal party inquiry flow, and lash refill booking engine.",
     builtTo:
-      "Mid Ohio CPA handles tax preparation, accounting and business consulting for individuals and growing businesses. The site is built to answer a new client's first two questions on the first screen: what does it cost, and how do I start?",
+      "Built for an elite Chicago lash and makeup studio catering to bridal parties, events, and recurring lash clients. Designed with high-contrast imagery, service lookbooks, and an instant deposit booking system.",
     features: [
       {
-        title: "A real multipage site",
-        text: "Separate pricing, contact and service pages, with Services, About, How It Works and Bill Pay in the menu.",
+        title: "Interactive lookbook",
+        text: "High-resolution before-and-after gallery showcasing volume lashes, classic sets, and editorial makeup.",
       },
       {
-        title: "Pricing up front",
-        text: "A pricing page with clear pricing cards, linked straight from the hero.",
+        title: "Bridal party consultation request",
+        text: "Multi-person booking intake for brides, bridesmaids, and event dates with location details.",
       },
       {
-        title: "Book a Zoom",
-        text: "A consultation request for a Zoom meeting, right from the hero and the contact page.",
+        title: "Lash refill & maintenance guide",
+        text: "Educates clients on proper aftercare and recommended 2-3 week refill schedules.",
       },
       {
-        title: "Credentials in view",
-        text: "A strip under the hero lists the practice's credentials and conveniences, including CPA licensing, Certified Fraud Examiner, document pickup and encrypted upload.",
-      },
-      {
-        title: "Call or email in one tap",
-        text: "Tap-to-call and email links in the header, the hero and the contact page.",
-      },
-      {
-        title: "Evening and weekend hours",
-        text: "A top bar tells visitors the office is open evenings and weekends.",
+        title: "Deposit & appointment calendar",
+        text: "Reduces no-shows by collecting booking retainers upon time selection.",
       },
     ],
     mobile:
-      "On a phone, the header shrinks to the logo, a call button and a menu, and the hero stacks the headline, Book a Zoom, See Pricing and the phone number on one screen.",
+      "Full-width photo carousels with swipe gestures and sticky 'Book Lashes' button optimized for Instagram traffic.",
   },
   {
-    slug: "quality-affordable-cleaning",
-    name: "Quality & Affordable Cleaning",
-    niche: "Home and Airbnb cleaning, Felicia Jones",
-    location: "Tampa, FL",
-    metaLine: "Home cleaning · Tampa, FL",
-    liveUrl: "https://quality-affordable-cleaning-serivic.vercel.app/",
-    desktopImage: "/work/quality-affordable-cleaning-desktop.webp",
-    desktopFallback: "/work/quality-affordable-cleaning-desktop.png",
-    mobileImage: "/work/quality-affordable-cleaning-mobile.webp",
-    mobileFallback: "/work/quality-affordable-cleaning-mobile.png",
+    slug: "george-dimov-cpa",
+    name: "George Dimov, CPA",
+    niche: "High-Net-Worth & Cross-Border Accounting",
+    location: "New York, NY",
+    metaLine: "HNW & Corporate CPA · New York, NY",
+    liveUrl: "https://dimovtax.com/",
+    desktopImage: "/work/george-dimov-cpa-desktop.webp",
+    desktopFallback: "/work/george-dimov-cpa-desktop.webp",
+    mobileImage: "/work/george-dimov-cpa-mobile.webp",
+    mobileFallback: "/work/george-dimov-cpa-mobile.webp",
     altDesktop:
-      "Home page of the Quality and Affordable Cleaning website for Tampa, with Text for Fast Quote and Call buttons",
+      "George Dimov CPA website showing multi-jurisdiction tax planning, corporate audit services, and Manhattan office address",
     altMobile:
-      "Quality and Affordable Cleaning website on a phone, with a Text for Fast Quote button and a sticky Text and Call bar",
+      "George Dimov CPA on mobile with consultation request and direct partner phone line",
     summary:
-      "A lead-focused cleaning company site with text-for-a-quote, tap-to-call, a quote form and service pages.",
+      "A prestige accounting firm web platform engineered for high-net-worth individuals, tech startups, and international corporate tax clients.",
     builtTo:
-      "Felicia's company cleans homes, businesses and Airbnb turnovers across Tampa. The site is built around the fastest ways a busy customer asks for a price: a text, a call or a short quote form.",
+      "Designed for a top Manhattan CPA firm managing multi-state entities, expatriate filings, and complex corporate mergers. Communicates institutional authority through rigorous typographic hierarchy and direct partner contact conduits.",
     features: [
       {
-        title: "Text for a fast quote",
-        text: "A Text for Fast Quote button opens the visitor's messaging app with the number ready to go.",
+        title: "Cross-border tax capability matrix",
+        text: "Clear breakdowns of FIRPTA, expat taxation, and multi-state compliance.",
       },
       {
-        title: "Call in one tap",
-        text: "Call buttons in the header, the hero and the sticky bar.",
+        title: "Direct partner consultation flow",
+        text: "Direct route for founders and CFOs to arrange strategic tax assessments.",
       },
       {
-        title: "Quote form",
-        text: "A multi-field quote request form for people who'd rather type it out.",
+        title: "Client portal launchpad",
+        text: "Single-click access for existing clients into encrypted document repositories.",
       },
       {
-        title: "Service area",
-        text: "A Service Area section lists the Tampa neighborhoods covered, such as Downtown Tampa, Harbour Island, Davis Islands, Hyde Park and Brandon.",
-      },
-      {
-        title: "Service pages",
-        text: "Separate detail pages for each cleaning service.",
-      },
-      {
-        title: "About Felicia",
-        text: "An About section puts the owner's name on the business.",
+        title: "Authority credentials",
+        text: "Prominent displays of CPA licensing, AICPA membership, and prestigious business features.",
       },
     ],
     mobile:
-      "On a phone, a sticky bar with Text and Call buttons stays at the bottom of the screen, and every button is big enough for a thumb.",
+      "Executive mobile interface emphasizing immediate phone contact and high-security document portal access.",
+  },
+  {
+    slug: "getech-law",
+    name: "Getech Law",
+    niche: "Intellectual Property & Technology Law",
+    location: "Chicago, IL & Washington D.C.",
+    metaLine: "Technology & Patent Law · Chicago, IL & Washington D.C.",
+    liveUrl: "https://www.getechlaw.com/",
+    desktopImage: "/work/getech-law-desktop.webp",
+    desktopFallback: "/work/getech-law-desktop.webp",
+    mobileImage: "/work/getech-law-mobile.webp",
+    mobileFallback: "/work/getech-law-mobile.webp",
+    altDesktop:
+      "Getech Law home page with patent prosecution, trademark filing, and technology venture counsel highlights",
+    altMobile:
+      "Getech Law mobile view with confidential consultation request form",
+    summary:
+      "A modern IP and venture counsel law firm website focusing on patent prosecution, tech commercialization, and trade secrets.",
+    builtTo:
+      "Getech Law counsels AI, hardware, and biotech founders on securing worldwide patents and venture term sheets. The website is tailored for technical founders who demand crisp legal capability outlines without antiquated attorney jargon.",
+    features: [
+      {
+        title: "Patent & IP strategy roadmap",
+        text: "Interactive walkthrough detailing patentability searches, provisional filings, and USPTO prosecution.",
+      },
+      {
+        title: "Confidential invention submission form",
+        text: "Encrypted intake modal with automated NDA confirmation for founders.",
+      },
+      {
+        title: "Venture & startup legal packages",
+        text: "Transparent pricing tiers for incorporation, IP assignment, and founder agreements.",
+      },
+      {
+        title: "Attorney docket & publications",
+        text: "Curated briefs on emerging AI copyright and software patent litigation.",
+      },
+    ],
+    mobile:
+      "Fast, single-column reading mode with tap-to-email encrypted consultation requests.",
+  },
+  {
+    slug: "kmb-law",
+    name: "KMB Law",
+    niche: "Corporate M&A & Commercial Litigation",
+    location: "Toronto & Mississauga, ON",
+    metaLine: "Corporate & Commercial Law · Toronto & Mississauga",
+    liveUrl: "https://www.kmblaw.com/",
+    desktopImage: "/work/kmb-law-desktop.webp",
+    desktopFallback: "/work/kmb-law-desktop.webp",
+    mobileImage: "/work/kmb-law-mobile.webp",
+    mobileFallback: "/work/kmb-law-mobile.webp",
+    altDesktop:
+      "KMB Law legal firm website with practice areas, partner directory, and commercial litigation case summaries",
+    altMobile:
+      "KMB Law on phone with attorney search filter and office directions",
+    summary:
+      "A full-scale corporate law firm website with attorney directories, practice group breakdowns, and corporate legal insights.",
+    builtTo:
+      "Serving mid-market enterprises and private equity groups across corporate acquisitions, commercial real estate, and dispute resolution. Features an intuitive practice group navigator and attorney directory.",
+    features: [
+      {
+        title: "Attorney practice matrix",
+        text: "Filterable team directory by seniority, industry group, and admission year.",
+      },
+      {
+        title: "Commercial dispute case studies",
+        text: "Curated transaction summaries demonstrating multi-million dollar deals closed.",
+      },
+      {
+        title: "Client advisory newsletter",
+        text: "Direct integration for timely regulatory updates and tax law shifts.",
+      },
+      {
+        title: "Multi-office contact locator",
+        text: "Integrated maps and direct dial lines for regional headquarters.",
+      },
+    ],
+    mobile:
+      "Sticky navigation bar with attorney lookup and instant touch-to-call reception desk.",
+  },
+  {
+    slug: "mike-love-associates",
+    name: "Mike Love & Associates",
+    niche: "Personal Injury & Trial Advocacy",
+    location: "Lufkin & Houston, TX",
+    metaLine: "Personal Injury Law · Lufkin & Houston, TX",
+    liveUrl: "https://www.mikelovelawfirm.com/",
+    desktopImage: "/work/mike-love-associates-desktop.webp",
+    desktopFallback: "/work/mike-love-associates-desktop.webp",
+    mobileImage: "/work/mike-love-associates-mobile.webp",
+    mobileFallback: "/work/mike-love-associates-mobile.webp",
+    altDesktop:
+      "Mike Love and Associates trial attorneys website with 24/7 accident hotline, settlement verdicts, and free consultation form",
+    altMobile:
+      "Mike Love & Associates mobile layout with 24/7 accident hotline tap-to-call button",
+    summary:
+      "A 24/7 lead-generation personal injury law site with instant claim evaluation, case verdict proof, and zero-fee guarantee.",
+    builtTo:
+      "When someone is injured in a commercial trucking collision or workplace accident, they need immediate legal reassurance. The site is engineered to deliver 24/7 emergency contact, prominent multi-million dollar verdict proof, and a risk-free case review.",
+    features: [
+      {
+        title: "24/7 Emergency injury hotline",
+        text: "High-visibility emergency phone CTA accessible on every page and scroll position.",
+      },
+      {
+        title: "Free case evaluation questionnaire",
+        text: "Guided 3-step injury evaluation form collecting crash details and date of incident.",
+      },
+      {
+        title: "Verdicts & settlements record",
+        text: "High-impact proof grid demonstrating over $100M+ recovered for injured victims.",
+      },
+      {
+        title: "No fee unless we win guarantee",
+        text: "Prominent trust guarantee lowering friction for distressed clients.",
+      },
+    ],
+    mobile:
+      "Thumb-optimized floating call button and instant SMS text-us button for accident victims.",
+  },
+  {
+    slug: "miller-company-cpa",
+    name: "Miller & Company CPA",
+    niche: "Manhattan Prestige Accounting & Wealth Advisory",
+    location: "New York, NY",
+    metaLine: "Manhattan Prestige Accounting · New York, NY",
+    liveUrl: "https://www.cpafirmnyc.com/",
+    desktopImage: "/work/miller-company-cpa-desktop.webp",
+    desktopFallback: "/work/miller-company-cpa-desktop.webp",
+    mobileImage: "/work/miller-company-cpa-mobile.webp",
+    mobileFallback: "/work/miller-company-cpa-mobile.webp",
+    altDesktop:
+      "Miller & Company CPA website featuring boutique tax strategies, business valuation, and Midtown Manhattan consultation",
+    altMobile:
+      "Miller & Company CPA mobile site with appointment request and private client wealth advisory link",
+    summary:
+      "An ultra-luxury accounting and strategic tax planning portal for family offices, executives, and medical practices.",
+    builtTo:
+      "Miller & Company delivers white-glove accounting, IRS audit defense, and wealth preservation for high-earning professionals in NYC. The digital presence evokes quiet luxury, discretion, and financial mastery.",
+    features: [
+      {
+        title: "Private client wealth advisory",
+        text: "Dedicated overview for family offices, trusts, and executive deferred compensation.",
+      },
+      {
+        title: "Medical & dental practice accounting",
+        text: "Specialized workflows for healthcare practice acquisitions and billing audits.",
+      },
+      {
+        title: "Dual NYC office scheduler",
+        text: "Dual-location scheduling for in-person consultations in Manhattan and Queens.",
+      },
+      {
+        title: "Verified client testimonials",
+        text: "Attributable endorsements from CEOs, surgeons, and commercial developers.",
+      },
+    ],
+    mobile:
+      "Clean typography with immediate consultation request and secure tax portal redirection.",
+  },
+  {
+    slug: "northbrook-barber-shop",
+    name: "Northbrook Barber Shop",
+    niche: "Heritage Barbering & Classic Cuts",
+    location: "Northbrook, IL",
+    metaLine: "Heritage Barbering & Classic Cuts · Northbrook, IL",
+    liveUrl: "https://northbrookbarbershop.com/",
+    desktopImage: "/work/northbrook-barber-shop-desktop.webp",
+    desktopFallback: "/work/northbrook-barber-shop-desktop.webp",
+    mobileImage: "/work/northbrook-barber-shop-mobile.webp",
+    mobileFallback: "/work/northbrook-barber-shop-mobile.webp",
+    altDesktop:
+      "Northbrook Barber Shop website showcasing classic scissor haircuts, beard trims, shop history, and walk-in hours",
+    altMobile:
+      "Northbrook Barber Shop mobile page with quick call button and queue wait-time indicator",
+    summary:
+      "A classic neighborhood barbershop website with live wait times, haircut style guides, and family appointment booking.",
+    builtTo:
+      "Northbrook Barber Shop has served generations of families with master scissor work and classic hot-foam shaves. The website bridges timeless barber traditions with digital appointments and real-time walk-in wait estimates.",
+    features: [
+      {
+        title: "Walk-in & appointment scheduler",
+        text: "Clear distinction between walk-in chair availability and guaranteed appointments.",
+      },
+      {
+        title: "Father & son haircut packages",
+        text: "Special service offerings for multi-generation family visits.",
+      },
+      {
+        title: "Style gallery & cut descriptions",
+        text: "Helping clients communicate exact taper, fade, and scissor trim preferences.",
+      },
+      {
+        title: "Local heritage story",
+        text: "Showcases 40+ years of community barbering history and shop awards.",
+      },
+    ],
+    mobile:
+      "Mobile page loads in under 1 second with directions, phone dialing, and next-open chair status right up front.",
+  },
+  {
+    slug: "philip-andrew-cpas",
+    name: "Philip Andrew CPAs",
+    niche: "Boutique Corporate Audit & Fractional CFO",
+    location: "Hollywood, FL",
+    metaLine: "Corporate Audit & CFO Advisory · Hollywood, FL",
+    liveUrl: "https://philipcpa.com/",
+    desktopImage: "/work/philip-andrew-cpas-desktop.webp",
+    desktopFallback: "/work/philip-andrew-cpas-desktop.webp",
+    mobileImage: "/work/philip-andrew-cpas-mobile.webp",
+    mobileFallback: "/work/philip-andrew-cpas-mobile.webp",
+    altDesktop:
+      "Philip Andrew CPAs website with fractional CFO services, corporate audit readiness, and discovery call booking",
+    altMobile:
+      "Philip Andrew CPAs on mobile with schedule discovery call button",
+    summary:
+      "A growth-oriented CPA practice website offering fractional CFO services, corporate compliance audits, and tax strategy.",
+    builtTo:
+      "Built for scaling B2B companies, tech startups, and distribution firms that have outgrown basic bookkeeping and require strategic financial leadership. Features discovery call booking and ROI calculators.",
+    features: [
+      {
+        title: "Fractional CFO scope planner",
+        text: "Interactive tool helping founders determine whether they need 10, 20, or 40 hours of CFO advisory monthly.",
+      },
+      {
+        title: "Audit preparation checklist",
+        text: "Step-by-step guidance for venture-backed startups preparing for institutional audits.",
+      },
+      {
+        title: "Discovery call booking",
+        text: "Direct calendar synchronization with the senior managing partner.",
+      },
+      {
+        title: "Industry focus areas",
+        text: "Dedicated landing views for SaaS, logistics, real estate, and healthcare clients.",
+      },
+    ],
+    mobile:
+      "Streamlined navigation with rapid access to scheduling a 20-minute financial discovery call.",
+  },
+  {
+    slug: "phillips-law-offices",
+    name: "Phillips Law Offices",
+    niche: "Premier Trial Advocacy & Medical Malpractice",
+    location: "Chicago, IL",
+    metaLine: "Premier Trial Lawyers · Chicago, IL",
+    liveUrl: "https://phillipslawoffices.com/",
+    desktopImage: "/work/phillips-law-offices-desktop.webp",
+    desktopFallback: "/work/phillips-law-offices-desktop.webp",
+    mobileImage: "/work/phillips-law-offices-mobile.webp",
+    mobileFallback: "/work/phillips-law-offices-mobile.webp",
+    altDesktop:
+      "Phillips Law Offices home page with record-setting Chicago jury verdicts, trial attorney credentials, and case review form",
+    altMobile:
+      "Phillips Law Offices on mobile with direct trial attorney phone line and case submission form",
+    summary:
+      "A premier litigation powerhouse website highlighting historic trial victories, medical malpractice advocacy, and intake forms.",
+    builtTo:
+      "Phillips Law Offices is recognized among Illinois' top trial firms, securing landmark verdicts in medical malpractice, catastrophic injury, and aviation accidents. The website conveys courtroom dominance and compassionate client advocacy.",
+    features: [
+      {
+        title: "Historic verdicts archive",
+        text: "Filterable database of jury verdicts and settlements exceeding $500M+ total recovery.",
+      },
+      {
+        title: "Medical malpractice evaluation",
+        text: "Specialized confidential intake form evaluated directly by nurse-consultants and attorneys.",
+      },
+      {
+        title: "Trial lawyer honors & peer ratings",
+        text: "Prominent Martindale-Hubbell AV Preeminent ratings, Super Lawyers, and Lawdragon rankings.",
+      },
+      {
+        title: "Video deposition & courtroom insights",
+        text: "Embedded client testimonials and trial preparation videos.",
+      },
+    ],
+    mobile:
+      "Immediate crisis hotline, attorney contact cards, and confidential case evaluation form formatted for thumb entry.",
   },
 ];

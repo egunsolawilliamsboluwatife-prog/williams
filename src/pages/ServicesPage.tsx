@@ -4,6 +4,7 @@ import { Seo } from "../components/ui/Seo.tsx";
 import { PricingTier } from "../components/ui/PricingTier.tsx";
 import { GlassCard } from "../components/ui/GlassCard.tsx";
 import { Button } from "../components/ui/Button.tsx";
+import { Tilt3DCard } from "../components/ui/Tilt3DCard.tsx";
 import { WhatYouGetBento } from "../components/home/WhatYouGetBento.tsx";
 import { ReviewsSection } from "../components/home/ReviewsSection.tsx";
 import { FaqAccordion } from "../components/ui/FaqAccordion.tsx";
@@ -83,50 +84,52 @@ export const ServicesPage: React.FC = () => {
         <section className="pb-24 md:pb-32">
           <div className="max-w-[1240px] mx-auto px-5 md:px-8 lg:px-12">
             <Reveal>
-              <GlassCard className="p-8 md:p-12">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-                  {/* Left (cols 1-5) */}
-                  <div className="lg:col-span-5">
-                    <h2 className="font-display font-bold text-3xl md:text-4xl text-bone tracking-tight mb-4">
-                      {CARE_PLAN.name}
-                    </h2>
-                    <span className="block font-mono text-[13px] font-medium text-bone-subtle tracking-[0.02em] mb-1">
-                      {CARE_PLAN.billingPeriod}
-                    </span>
-                    <span className="font-mono text-4xl md:text-5xl font-medium text-bone tabular-nums">
-                      ${CARE_PLAN.price}/mo
-                    </span>
-                  </div>
-
-                  {/* Right (cols 6-12) */}
-                  <div className="lg:col-span-7 flex flex-col items-start gap-6">
-                    <p className="font-sans text-lg text-bone-muted leading-relaxed">
-                      {CARE_PLAN.summary}
-                    </p>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 w-full">
-                      {CARE_PLAN.includes.map((feature, idx) => (
-                        <div key={idx} className="flex items-center gap-2.5">
-                          <Check
-                            size={18}
-                            className="text-ember shrink-0"
-                            weight="bold"
-                          />
-                          <span className="font-sans text-base text-bone">
-                            {feature}
-                          </span>
-                        </div>
-                      ))}
+              <Tilt3DCard maxTilt={3}>
+                <GlassCard className="p-8 md:p-12">
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                    {/* Left (cols 1-5) */}
+                    <div className="lg:col-span-5">
+                      <h2 className="font-display font-bold text-3xl md:text-4xl text-bone tracking-tight mb-4">
+                        {CARE_PLAN.name}
+                      </h2>
+                      <span className="block font-mono text-[13px] font-medium text-bone-subtle tracking-[0.02em] mb-1">
+                        {CARE_PLAN.billingPeriod}
+                      </span>
+                      <span className="font-mono text-4xl md:text-5xl font-medium text-bone tabular-nums">
+                        ${CARE_PLAN.price}/mo
+                      </span>
                     </div>
 
-                    <div className="pt-2">
-                      <Button to="/book" variant="primary">
-                        Book a call
-                      </Button>
+                    {/* Right (cols 6-12) */}
+                    <div className="lg:col-span-7 flex flex-col items-start gap-6">
+                      <p className="font-sans text-lg text-bone-muted leading-relaxed">
+                        {CARE_PLAN.summary}
+                      </p>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 w-full">
+                        {CARE_PLAN.includes.map((feature, idx) => (
+                          <div key={idx} className="flex items-center gap-2.5">
+                            <Check
+                              size={18}
+                              className="text-ember shrink-0"
+                              weight="bold"
+                            />
+                            <span className="font-sans text-base text-bone">
+                              {feature}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className="pt-2">
+                        <Button to="/book" variant="primary">
+                          Book a call
+                        </Button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </GlassCard>
+                </GlassCard>
+              </Tilt3DCard>
             </Reveal>
           </div>
         </section>

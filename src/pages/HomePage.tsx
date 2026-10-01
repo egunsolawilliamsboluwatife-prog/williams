@@ -15,6 +15,9 @@ import { EASE_OUT } from "../lib/motion.ts";
 import { CASE_STUDIES } from "../content/work.ts";
 import { PRICING_TIERS } from "../content/pricing.ts";
 import { useBooking } from "../context/BookingContext.tsx";
+import { ThreeHeroScene } from "../components/3d/ThreeHeroScene.tsx";
+import { Tilt3DCard } from "../components/ui/Tilt3DCard.tsx";
+import { AnimatedCounter } from "../components/ui/AnimatedCounter.tsx";
 
 export const HomePage: React.FC = () => {
   const { openBookingModal } = useBooking();
@@ -59,6 +62,7 @@ export const HomePage: React.FC = () => {
         ref={heroSectionRef}
         className="relative min-h-[100dvh] pt-28 md:pt-32 pb-16 flex items-center overflow-hidden"
       >
+        <ThreeHeroScene />
         <div className="max-w-[1240px] mx-auto px-5 md:px-8 lg:px-12 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Left Content (cols 1-7) */}
@@ -146,47 +150,49 @@ export const HomePage: React.FC = () => {
                   aria-hidden="true"
                 />
 
-                {/* Studio Portrait Card */}
-                <div className="relative rounded-[32px] overflow-hidden border border-line bg-navy shadow-[var(--shadow-float)] aspect-[4/5] sm:aspect-[3/4] max-h-[580px] w-full group">
-                  <img
-                    src="/williams-navy-bokeh.jpg"
-                    alt="Egunsola Williams, founder and lead web engineer"
-                    width={1048}
-                    height={592}
-                    fetchPriority="high"
-                    decoding="async"
-                    className="w-full h-full object-cover object-[center_20%] group-hover:scale-102 transition-transform duration-700 ease-out"
-                  />
+                {/* Studio Portrait Card with Interactive 3D Tilt */}
+                <Tilt3DCard maxTilt={8} glowColor="rgba(217, 119, 54, 0.2)">
+                  <div className="relative rounded-[32px] overflow-hidden border border-line bg-navy shadow-[var(--shadow-float)] aspect-[4/5] sm:aspect-[3/4] max-h-[580px] w-full group">
+                    <img
+                      src="/williams-navy-bokeh.jpg"
+                      alt="Egunsola Williams, founder and lead web engineer"
+                      width={1048}
+                      height={592}
+                      fetchPriority="high"
+                      decoding="async"
+                      className="w-full h-full object-cover object-[center_20%] group-hover:scale-102 transition-transform duration-700 ease-out"
+                    />
 
-                  {/* Gradient Lighting Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/20 to-transparent pointer-events-none" />
+                    {/* Gradient Lighting Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-ink/95 via-ink/20 to-transparent pointer-events-none" />
 
-                  {/* Top Floating Badge */}
-                  <div className="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none">
-                    <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-ink/75 backdrop-blur-md border border-white/10 text-xs font-sans font-medium text-bone shadow-sm">
-                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                      <span>Available for work</span>
-                    </span>
-                    <span className="px-3 py-1 rounded-full bg-ink/75 backdrop-blur-md border border-white/10 text-[11px] font-mono text-ember font-semibold shadow-sm">
-                      24/7 Booking
-                    </span>
-                  </div>
-
-                  {/* Bottom Founder Signature & Credential Card */}
-                  <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-ink/80 backdrop-blur-md border border-white/10 shadow-lg">
-                    <div className="flex items-center justify-between mb-1">
-                      <h3 className="font-display font-bold text-lg text-bone tracking-tight">
-                        Egunsola Williams
-                      </h3>
-                      <span className="text-[11px] font-mono text-emerald-400 bg-emerald-500/15 px-2 py-0.5 rounded font-medium border border-emerald-500/20">
-                        300+ Delivered
+                    {/* Top Floating Badge */}
+                    <div className="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none">
+                      <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-ink/75 backdrop-blur-md border border-white/10 text-xs font-sans font-medium text-bone shadow-sm">
+                        <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                        <span>Available for work</span>
+                      </span>
+                      <span className="px-3 py-1 rounded-full bg-ink/75 backdrop-blur-md border border-white/10 text-[11px] font-mono text-ember font-semibold shadow-sm">
+                        24/7 Booking
                       </span>
                     </div>
-                    <p className="font-sans text-xs text-bone-muted">
-                      Founder & Lead Web Engineer · Nationwide US
-                    </p>
+
+                    {/* Bottom Founder Signature & Credential Card */}
+                    <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-ink/80 backdrop-blur-md border border-white/10 shadow-lg">
+                      <div className="flex items-center justify-between mb-1">
+                        <h3 className="font-display font-bold text-lg text-bone tracking-tight">
+                          Egunsola Williams
+                        </h3>
+                        <span className="text-[11px] font-mono text-emerald-400 bg-emerald-500/15 px-2 py-0.5 rounded font-medium border border-emerald-500/20">
+                          300+ Delivered
+                        </span>
+                      </div>
+                      <p className="font-sans text-xs text-bone-muted">
+                        Founder & Lead Web Engineer · Nationwide US
+                      </p>
+                    </div>
                   </div>
-                </div>
+                </Tilt3DCard>
               </motion.div>
             </div>
           </div>
@@ -199,9 +205,11 @@ export const HomePage: React.FC = () => {
           <Reveal>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
               <div className="lg:col-span-8">
-                <span className="block font-display font-extrabold text-[clamp(4.5rem,2rem+10vw,10rem)] leading-[0.9] tracking-[-0.05em] text-bone opsz-96 select-none">
-                  300+
-                </span>
+                <AnimatedCounter
+                  value={300}
+                  suffix="+"
+                  className="block font-display font-extrabold text-[clamp(4.5rem,2rem+10vw,10rem)] leading-[0.9] tracking-[-0.05em] text-bone opsz-96 select-none"
+                />
                 <h2 className="font-display font-semibold text-[clamp(2rem,1.4rem+2.4vw,3.25rem)] leading-[1.05] tracking-[-0.025em] text-bone-muted mt-2 opsz-72">
                   websites delivered
                 </h2>
@@ -231,126 +239,134 @@ export const HomePage: React.FC = () => {
             {/* Card A: Barber's Society (cols 1-7, row 1) */}
             <div className="lg:col-span-7">
               <Reveal>
-                <Link
-                  to={`/work/${projectA.slug}`}
-                  className="group block glass p-6 md:p-8 rounded-[24px] transition-transform duration-300 hover:-translate-y-1.5 focus-visible:ring-2 focus-visible:ring-ember outline-none"
-                >
-                  <div className="mb-6">
-                    <DeviceFrame
-                      kind="laptop"
-                      src={projectA.desktopImage}
-                      fallbackSrc={projectA.desktopFallback}
-                      alt={projectA.altDesktop}
-                    />
-                  </div>
-                  <h3 className="font-display font-bold text-2xl text-bone mb-1 tracking-tight">
-                    {projectA.name}
-                  </h3>
-                  <p className="font-sans text-sm text-bone-subtle mb-4">
-                    {projectA.metaLine}
-                  </p>
-                  <span className="inline-flex items-center gap-1.5 font-sans font-medium text-ember text-sm group-hover:translate-x-1 transition-transform">
-                    <span>View case study</span>
-                    <ArrowRight size={16} />
-                  </span>
-                </Link>
+                <Tilt3DCard maxTilt={5} className="h-full">
+                  <Link
+                    to={`/work/${projectA.slug}`}
+                    className="group block glass p-6 md:p-8 rounded-[24px] h-full transition-transform duration-300 hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-ember outline-none"
+                  >
+                    <div className="mb-6">
+                      <DeviceFrame
+                        kind="laptop"
+                        src={projectA.desktopImage}
+                        fallbackSrc={projectA.desktopFallback}
+                        alt={projectA.altDesktop}
+                      />
+                    </div>
+                    <h3 className="font-display font-bold text-2xl text-bone mb-1 tracking-tight">
+                      {projectA.name}
+                    </h3>
+                    <p className="font-sans text-sm text-bone-subtle mb-4">
+                      {projectA.metaLine}
+                    </p>
+                    <span className="inline-flex items-center gap-1.5 font-sans font-medium text-ember text-sm group-hover:translate-x-1 transition-transform">
+                      <span>View case study</span>
+                      <ArrowRight size={16} />
+                    </span>
+                  </Link>
+                </Tilt3DCard>
               </Reveal>
             </div>
 
             {/* Card B: Best CPA Services (cols 8-12, row 1-2) */}
             <div className="lg:col-span-5 lg:row-span-2">
               <Reveal delay={0.06}>
-                <Link
-                  to={`/work/${projectB.slug}`}
-                  className="group block bg-navy border border-line p-6 md:p-8 rounded-[24px] h-full flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1.5 focus-visible:ring-2 focus-visible:ring-ember outline-none"
-                >
-                  <div className="flex justify-center items-center py-6">
-                    <div className="w-[75%] max-w-[260px]">
-                      <DeviceFrame
-                        kind="phone"
-                        src={projectB.mobileImage}
-                        fallbackSrc={projectB.mobileFallback}
-                        alt={projectB.altMobile}
-                      />
+                <Tilt3DCard maxTilt={5} className="h-full">
+                  <Link
+                    to={`/work/${projectB.slug}`}
+                    className="group block bg-navy border border-line p-6 md:p-8 rounded-[24px] h-full flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-ember outline-none"
+                  >
+                    <div className="flex justify-center items-center py-6">
+                      <div className="w-[75%] max-w-[260px]">
+                        <DeviceFrame
+                          kind="phone"
+                          src={projectB.mobileImage}
+                          fallbackSrc={projectB.mobileFallback}
+                          alt={projectB.altMobile}
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div className="pt-4">
-                    <h3 className="font-display font-bold text-2xl text-bone mb-1 tracking-tight">
-                      {projectB.name}
-                    </h3>
-                    <p className="font-sans text-sm text-bone-subtle mb-4">
-                      {projectB.metaLine}
-                    </p>
-                    <span className="inline-flex items-center gap-1.5 font-sans font-medium text-ember text-sm group-hover:translate-x-1 transition-transform">
-                      <span>View case study</span>
-                      <ArrowRight size={16} />
-                    </span>
-                  </div>
-                </Link>
+                    <div className="pt-4">
+                      <h3 className="font-display font-bold text-2xl text-bone mb-1 tracking-tight">
+                        {projectB.name}
+                      </h3>
+                      <p className="font-sans text-sm text-bone-subtle mb-4">
+                        {projectB.metaLine}
+                      </p>
+                      <span className="inline-flex items-center gap-1.5 font-sans font-medium text-ember text-sm group-hover:translate-x-1 transition-transform">
+                        <span>View case study</span>
+                        <ArrowRight size={16} />
+                      </span>
+                    </div>
+                  </Link>
+                </Tilt3DCard>
               </Reveal>
             </div>
 
             {/* Card C: Best Makeup & Best Lashes (cols 1-3, row 2) */}
             <div className="lg:col-span-4">
               <Reveal delay={0.12}>
-                <Link
-                  to={`/work/${projectC.slug}`}
-                  className="group block glass p-6 md:p-8 rounded-[24px] h-full flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1.5 focus-visible:ring-2 focus-visible:ring-ember outline-none"
-                >
-                  <div className="flex justify-center mb-6">
-                    <div className="w-[70%] max-w-[200px]">
-                      <DeviceFrame
-                        kind="phone"
-                        src={projectC.mobileImage}
-                        fallbackSrc={projectC.mobileFallback}
-                        alt={projectC.altMobile}
-                      />
+                <Tilt3DCard maxTilt={5} className="h-full">
+                  <Link
+                    to={`/work/${projectC.slug}`}
+                    className="group block glass p-6 md:p-8 rounded-[24px] h-full flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-ember outline-none"
+                  >
+                    <div className="flex justify-center mb-6">
+                      <div className="w-[70%] max-w-[200px]">
+                        <DeviceFrame
+                          kind="phone"
+                          src={projectC.mobileImage}
+                          fallbackSrc={projectC.mobileFallback}
+                          alt={projectC.altMobile}
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div>
-                    <h3 className="font-display font-bold text-xl text-bone mb-1 tracking-tight">
-                      {projectC.name}
-                    </h3>
-                    <p className="font-sans text-sm text-bone-subtle mb-4">
-                      {projectC.metaLine}
-                    </p>
-                    <span className="inline-flex items-center gap-1.5 font-sans font-medium text-ember text-sm group-hover:translate-x-1 transition-transform">
-                      <span>View case study</span>
-                      <ArrowRight size={16} />
-                    </span>
-                  </div>
-                </Link>
+                    <div>
+                      <h3 className="font-display font-bold text-xl text-bone mb-1 tracking-tight">
+                        {projectC.name}
+                      </h3>
+                      <p className="font-sans text-sm text-bone-subtle mb-4">
+                        {projectC.metaLine}
+                      </p>
+                      <span className="inline-flex items-center gap-1.5 font-sans font-medium text-ember text-sm group-hover:translate-x-1 transition-transform">
+                        <span>View case study</span>
+                        <ArrowRight size={16} />
+                      </span>
+                    </div>
+                  </Link>
+                </Tilt3DCard>
               </Reveal>
             </div>
 
             {/* Card D: George Dimov CPA (cols 4-7, row 2) */}
             <div className="lg:col-span-3">
               <Reveal delay={0.18}>
-                <Link
-                  to={`/work/${projectD.slug}`}
-                  className="group block glass p-6 md:p-8 rounded-[24px] h-full flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1.5 focus-visible:ring-2 focus-visible:ring-ember outline-none"
-                >
-                  <div className="mb-6">
-                    <DeviceFrame
-                      kind="laptop"
-                      src={projectD.desktopImage}
-                      fallbackSrc={projectD.desktopFallback}
-                      alt={projectD.altDesktop}
-                    />
-                  </div>
-                  <div>
-                    <h3 className="font-display font-bold text-xl text-bone mb-1 tracking-tight">
-                      {projectD.name}
-                    </h3>
-                    <p className="font-sans text-sm text-bone-subtle mb-4">
-                      {projectD.metaLine}
-                    </p>
-                    <span className="inline-flex items-center gap-1.5 font-sans font-medium text-ember text-sm group-hover:translate-x-1 transition-transform">
-                      <span>View case study</span>
-                      <ArrowRight size={16} />
-                    </span>
-                  </div>
-                </Link>
+                <Tilt3DCard maxTilt={5} className="h-full">
+                  <Link
+                    to={`/work/${projectD.slug}`}
+                    className="group block glass p-6 md:p-8 rounded-[24px] h-full flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-ember outline-none"
+                  >
+                    <div className="mb-6">
+                      <DeviceFrame
+                        kind="laptop"
+                        src={projectD.desktopImage}
+                        fallbackSrc={projectD.desktopFallback}
+                        alt={projectD.altDesktop}
+                      />
+                    </div>
+                    <div>
+                      <h3 className="font-display font-bold text-xl text-bone mb-1 tracking-tight">
+                        {projectD.name}
+                      </h3>
+                      <p className="font-sans text-sm text-bone-subtle mb-4">
+                        {projectD.metaLine}
+                      </p>
+                      <span className="inline-flex items-center gap-1.5 font-sans font-medium text-ember text-sm group-hover:translate-x-1 transition-transform">
+                        <span>View case study</span>
+                        <ArrowRight size={16} />
+                      </span>
+                    </div>
+                  </Link>
+                </Tilt3DCard>
               </Reveal>
             </div>
           </div>

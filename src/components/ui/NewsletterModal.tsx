@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { X, EnvelopeSimple, CheckCircle, Sparkle } from "@phosphor-icons/react";
 import { CONTACT_EMAIL, WEB3FORMS_ACCESS_KEY } from "../../config/site.ts";
+import { saveNewsletterLead } from "../../lib/leads.ts";
 
 export const NewsletterModal: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -66,33 +67,43 @@ export const NewsletterModal: React.FC = () => {
 
     setIsSubmitting(true);
 
+    let delivered = false;
     try {
-      if (WEB3FORMS_ACCESS_KEY) {
-        await fetch("https://api.web3forms.com/submit", {
+      if (WEB3FORMS_ACCESS_KEY && WEB3FORMS_ACCESS_KEY.trim() !== "") {
+        const res = await fetch("https://api.web3forms.com/submit", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
           },
           body: JSON.stringify({
-            access_key: WEB3FORMS_ACCESS_KEY,
-            subject: `[Newsletter Signup] ${email}`,
+            access_key: WEB3FORMS_ACCESS_KEY.trim(),
+            subject: `[New Newsletter Subscriber] ${email}`,
             email: email,
             from_name: "Williams Portfolio Newsletter",
             message: `New subscriber joining Williams Local Business Growth Newsletter: ${email}`,
           }),
-        }).catch((err) => console.warn("Web3Forms notice:", err));
+        }).catch((err) => {
+          console.warn("Web3Forms notice:", err);
+          return null;
+        });
+
+        if (res && res.ok) {
+          delivered = true;
+        }
       }
 
       await fetch("/api/newsletter", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email }),
-      }).catch((err) => console.warn("Newsletter API notice:", err));
+      }).catch(() => null);
 
+      saveNewsletterLead(email, delivered);
       setIsSuccess(true);
       sessionStorage.setItem("newsletter_popup_dismissed", "true");
     } catch {
+      saveNewsletterLead(email, false);
       setIsSuccess(true);
       sessionStorage.setItem("newsletter_popup_dismissed", "true");
     } finally {

@@ -10,6 +10,7 @@ const ServicesPage = lazy(() => import("./pages/ServicesPage.tsx"));
 const AboutPage = lazy(() => import("./pages/AboutPage.tsx"));
 const BookPage = lazy(() => import("./pages/BookPage.tsx"));
 const ContactPage = lazy(() => import("./pages/ContactPage.tsx"));
+const InboxPage = lazy(() => import("./pages/InboxPage.tsx"));
 const PrivacyPage = lazy(() => import("./pages/PrivacyPage.tsx"));
 const NotFoundPage = lazy(() => import("./pages/NotFoundPage.tsx"));
 
@@ -71,6 +72,14 @@ const router = createBrowserRouter([
         element: (
           <Suspense fallback={null}>
             <ContactPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: "inbox",
+        element: (
+          <Suspense fallback={null}>
+            <InboxPage />
           </Suspense>
         ),
       },

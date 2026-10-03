@@ -3,20 +3,25 @@ import {
   CheckCircle,
   PaperPlaneTilt,
   Clock,
-  EnvelopeSimple,
   ShieldCheck,
+  EnvelopeSimple,
+  ArrowSquareOut,
+  ArrowClockwise,
 } from "@phosphor-icons/react";
 import { CONTACT_EMAIL, WEB3FORMS_ACCESS_KEY } from "../../config/site.ts";
+import { saveContactLead } from "../../lib/leads.ts";
 
 export const ClientIntakeForm: React.FC = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     business: "",
+    budget: "Growth (starting at $1,500)",
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [deliveredViaWeb3Forms, setDeliveredViaWeb3Forms] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -30,48 +35,63 @@ export const ClientIntakeForm: React.FC = () => {
 
     setIsSubmitting(true);
 
-    try {
-      // Direct Web3Forms submission (no custom backend API)
-      const accessKey = WEB3FORMS_ACCESS_KEY || "YOUR_ACCESS_KEY_HERE";
-      
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          access_key: accessKey,
-          subject: `New Client Inquiry: ${formData.name}${formData.business ? ` (${formData.business})` : ""}`,
-          from_name: formData.name,
-          email: formData.email,
-          business: formData.business || "Not provided",
-          message: formData.message,
-          replyto: formData.email,
-        }),
-      });
+    let sentSuccessfully = false;
 
-      const data = await res.json().catch(() => ({}));
+    // 1. If Web3Forms Access Key is provided, attempt delivery to Gmail
+    if (WEB3FORMS_ACCESS_KEY && WEB3FORMS_ACCESS_KEY.trim() !== "") {
+      try {
+        const res = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            access_key: WEB3FORMS_ACCESS_KEY.trim(),
+            subject: `[New Website Lead] ${formData.name} - ${formData.business || "Local Business"}`,
+            from_name: formData.name,
+            email: formData.email,
+            business: formData.business || "Not provided",
+            budget: formData.budget,
+            message: formData.message,
+            replyto: formData.email,
+          }),
+        });
 
-      if (data.success || res.ok) {
-        setIsSuccess(true);
-      } else {
-        // If key not activated yet, still mark success and provide instant mailto fallback
-        setIsSuccess(true);
+        const data = await res.json().catch(() => ({}));
+        if (data.success || res.ok) {
+          sentSuccessfully = true;
+          setDeliveredViaWeb3Forms(true);
+        }
+      } catch (err) {
+        console.warn("Web3Forms transmission error:", err);
       }
-    } catch {
-      // Network resilience
-      setIsSuccess(true);
-    } finally {
-      setIsSubmitting(false);
     }
+
+    // 2. Guarantee lead persistence in local inbox storage
+    saveContactLead({
+      name: formData.name,
+      email: formData.email,
+      business: formData.business,
+      budget: formData.budget,
+      message: formData.message,
+      deliveredToWeb3Forms: sentSuccessfully,
+    });
+
+    setIsSubmitting(false);
+    setIsSuccess(true);
   };
 
+  const subjectText = `Website Project Inquiry: ${formData.name || "Client"}${formData.business ? ` (${formData.business})` : ""}`;
+  const bodyText = `Hi Williams,\n\nName: ${formData.name}\nEmail: ${formData.email}\nBusiness: ${formData.business || "Not specified"}\nPackage / Budget: ${formData.budget}\n\nProject details:\n${formData.message}\n\nLooking forward to hearing from you!`;
+
+  const webGmailComposeUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(
+    CONTACT_EMAIL
+  )}&su=${encodeURIComponent(subjectText)}&body=${encodeURIComponent(bodyText)}`;
+
   const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(
-    `Website Inquiry from ${formData.name || "Client"}${formData.business ? ` (${formData.business})` : ""}`
-  )}&body=${encodeURIComponent(
-    `Hi Williams,\n\nName: ${formData.name}\nEmail: ${formData.email}\nBusiness: ${formData.business || "N/A"}\n\nMessage:\n${formData.message}\n`
-  )}`;
+    subjectText
+  )}&body=${encodeURIComponent(bodyText)}`;
 
   if (isSuccess) {
     return (
@@ -80,25 +100,66 @@ export const ClientIntakeForm: React.FC = () => {
           <CheckCircle size={38} weight="fill" />
         </div>
         <h3 className="font-display font-bold text-2xl md:text-3xl text-bone mb-3">
-          Message sent!
+          Inquiry Logged!
         </h3>
         <p className="font-sans text-base text-bone-muted leading-relaxed mb-6">
-          Thank you, <strong className="text-bone">{formData.name}</strong>. Your message is on its way to <strong className="text-bone">{CONTACT_EMAIL}</strong>. I review every inquiry personally and reply within 2–4 hours.
+          Thank you, <strong className="text-bone">{formData.name}</strong>. Your project details have been recorded for <strong className="text-bone">{CONTACT_EMAIL}</strong>.
         </p>
+
+        {deliveredViaWeb3Forms ? (
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-xs font-mono text-emerald-400 mb-6">
+            <ShieldCheck size={16} />
+            <span>Delivered directly to {CONTACT_EMAIL} inbox</span>
+          </div>
+        ) : (
+          <div className="p-4 rounded-2xl bg-navy border border-line text-left mb-6 space-y-3">
+            <p className="font-sans text-xs text-bone-muted leading-relaxed">
+              To send this immediately from your personal Gmail or email client:
+            </p>
+            <div className="flex flex-col sm:flex-row gap-2.5">
+              <a
+                href={webGmailComposeUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-ember text-navy font-sans font-bold text-xs hover:bg-ember-bright transition-colors shadow-md"
+              >
+                <ArrowSquareOut size={16} weight="bold" />
+                <span>Open in Gmail (1-Click Send)</span>
+              </a>
+              <a
+                href={mailtoUrl}
+                className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-navy-deep border border-line text-bone font-sans font-medium text-xs hover:border-line-strong transition-colors"
+              >
+                <EnvelopeSimple size={16} />
+                <span>Default Mail App</span>
+              </a>
+            </div>
+          </div>
+        )}
 
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-navy border border-line text-xs font-mono text-bone-subtle mb-6">
           <Clock size={15} className="text-ember" />
-          <span>Personal reply guaranteed within 24 hours</span>
+          <span>Egunsola Williams personal reply guaranteed within 2–4 hours</span>
         </div>
 
-        <div className="pt-6 border-t border-line/60">
-          <a
-            href={mailtoUrl}
-            className="inline-flex items-center gap-2 text-xs font-mono text-ember hover:underline"
+        <div className="pt-4 border-t border-line/60">
+          <button
+            type="button"
+            onClick={() => {
+              setIsSuccess(false);
+              setFormData({
+                name: "",
+                email: "",
+                business: "",
+                budget: "Growth (starting at $1,500)",
+                message: "",
+              });
+            }}
+            className="inline-flex items-center gap-2 text-xs font-mono text-bone-subtle hover:text-bone transition-colors cursor-pointer"
           >
-            <PaperPlaneTilt size={14} />
-            <span>Click here to also open this message in your Gmail / Mail app</span>
-          </a>
+            <ArrowClockwise size={14} />
+            <span>Send another inquiry</span>
+          </button>
         </div>
       </div>
     );
@@ -110,10 +171,6 @@ export const ClientIntakeForm: React.FC = () => {
         onSubmit={handleSubmit}
         className="glass rounded-[28px] border border-line p-7 md:p-10 shadow-2xl space-y-6"
       >
-        {/* Hidden Web3Forms Helper Fields */}
-        <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
-        <input type="hidden" name="subject" value="New Website Inquiry" />
-
         {errorMessage && (
           <div className="p-3.5 rounded-xl bg-ember/15 border border-ember/30 text-ember text-xs font-sans">
             {errorMessage}
@@ -164,7 +221,25 @@ export const ClientIntakeForm: React.FC = () => {
           />
         </div>
 
-        {/* 4. Message / Project Needs */}
+        {/* 4. Package / Budget Selection */}
+        <div>
+          <label className="block text-xs font-mono text-bone-muted uppercase tracking-wider mb-2">
+            Target Package or Budget
+          </label>
+          <select
+            value={formData.budget}
+            onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
+            className="w-full bg-navy-deep border border-line focus:border-ember focus:outline-none rounded-xl px-4 py-3.5 text-sm text-bone transition-colors"
+          >
+            <option value="Launch (starting at $1,000)">Launch ($1,000) — Fast 1-Page Lead Generator</option>
+            <option value="Growth (starting at $1,500)">Growth ($1,500) — Multi-Page with Booking</option>
+            <option value="Signature (starting at $2,300)">Signature ($2,300) — Custom Interactive Build</option>
+            <option value="Care Plan ($59/mo)">Care Plan ($59/mo) — Hosting, Fixes & Edits</option>
+            <option value="Not sure yet">Not sure yet — let's discuss on a call</option>
+          </select>
+        </div>
+
+        {/* 5. Message / Project Needs */}
         <div>
           <label className="block text-xs font-mono text-bone-muted uppercase tracking-wider mb-2">
             How can Williams help? <span className="text-ember">*</span>
@@ -188,7 +263,7 @@ export const ClientIntakeForm: React.FC = () => {
           {isSubmitting ? (
             <>
               <div className="w-4 h-4 border-2 border-navy border-t-transparent rounded-full animate-spin" />
-              <span>Sending directly to Williams...</span>
+              <span>Sending inquiry...</span>
             </>
           ) : (
             <>

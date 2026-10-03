@@ -17,6 +17,26 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(400).json({ ok: false, error: "invalid_email" });
   }
 
+  const web3Key = process.env.VITE_WEB3FORMS_ACCESS_KEY || process.env.WEB3FORMS_ACCESS_KEY;
+  if (web3Key && web3Key.trim() !== "") {
+    try {
+      await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: web3Key.trim(),
+          subject: `New Newsletter Subscriber: ${email}`,
+          from_name: "Williams Portfolio Newsletter",
+          email,
+          message: `New subscriber joining Williams Local Business Growth Newsletter: ${email}`,
+        }),
+      });
+      return res.status(200).json({ ok: true, email });
+    } catch (e) {
+      console.error("Web3Forms newsletter error:", e);
+    }
+  }
+
   const apiKey = process.env.RESEND_API_KEY;
   const from = process.env.RESEND_FROM_EMAIL;
 

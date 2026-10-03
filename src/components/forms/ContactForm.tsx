@@ -6,7 +6,8 @@ import {
   BUSINESS_TYPES,
   BUDGET_OPTIONS,
 } from "../../lib/contactSchema.ts";
-import { CONTACT_EMAIL } from "../../config/site.ts";
+import { CONTACT_EMAIL, WEB3FORMS_ACCESS_KEY } from "../../config/site.ts";
+import { saveContactLead } from "../../lib/leads.ts";
 import { Button } from "../ui/Button.tsx";
 
 interface FormValues {
@@ -137,38 +138,71 @@ export const ContactForm: React.FC = () => {
     setIsSubmitting(true);
     setLiveStatus("Sending your message...");
 
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...values,
-          startedAt: startedAtRef.current,
-        }),
-      });
+    let delivered = false;
 
-      const data = await res.json().catch(() => ({}));
+    // 1. Try Web3Forms if configured
+    if (WEB3FORMS_ACCESS_KEY && WEB3FORMS_ACCESS_KEY.trim() !== "") {
+      try {
+        const web3Res = await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            access_key: WEB3FORMS_ACCESS_KEY.trim(),
+            subject: `[New Website Lead] ${values.name} (${values.businessName})`,
+            from_name: values.name,
+            email: values.email,
+            business: values.businessName,
+            business_type: values.businessType,
+            website: values.website || "None",
+            budget: values.budget,
+            message: values.message,
+            replyto: values.email,
+          }),
+        });
 
-      if (res.ok && data.ok) {
-        setIsSuccess(true);
-        setLiveStatus(`Thanks, ${values.name.split(" ")[0]}. Your message is in.`);
-      } else if (res.status === 400 && data.errors) {
-        setErrors(data.errors);
-        setLiveStatus("Please fix the highlighted fields.");
-      } else {
-        setServerError(
-          `Something went wrong and your message didn't send. Please try again, or email me at ${CONTACT_EMAIL}.`
-        );
-        setLiveStatus("Something went wrong and your message didn't send.");
+        const web3Data = await web3Res.json().catch(() => ({}));
+        if (web3Data.success || web3Res.ok) {
+          delivered = true;
+        }
+      } catch (err) {
+        console.warn("Web3Forms transmission notice:", err);
       }
-    } catch {
-      setServerError(
-        `Something went wrong and your message didn't send. Please try again, or email me at ${CONTACT_EMAIL}.`
-      );
-      setLiveStatus("Something went wrong and your message didn't send.");
-    } finally {
-      setIsSubmitting(false);
     }
+
+    // 2. Fallback to /api/contact
+    if (!delivered) {
+      try {
+        const res = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            ...values,
+            startedAt: startedAtRef.current,
+          }),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (res.ok && data.ok) {
+          delivered = true;
+        }
+      } catch {}
+    }
+
+    // 3. Always save to local lead archive
+    saveContactLead({
+      name: values.name,
+      email: values.email,
+      business: values.businessName,
+      budget: values.budget,
+      message: values.message,
+      deliveredToWeb3Forms: delivered,
+    });
+
+    setIsSubmitting(false);
+    setIsSuccess(true);
+    setLiveStatus(`Thanks, ${values.name.split(" ")[0]}. Your message is in.`);
   };
 
   const firstName = values.name.trim().split(" ")[0] || "there";

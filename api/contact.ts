@@ -65,7 +65,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const web3Key =
     process.env.WEB3FORMS_ACCESS_KEY ||
     process.env.VITE_WEB3FORMS_ACCESS_KEY ||
-    (typeof b.access_key === "string" ? b.access_key : "");
+    (typeof b.access_key === "string" ? b.access_key : "") ||
+    "fcc66b34-57bd-4782-b094-d6939177554d";
 
   let delivered = false;
 

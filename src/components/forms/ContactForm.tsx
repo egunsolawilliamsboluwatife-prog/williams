@@ -139,27 +139,28 @@ export const ContactForm: React.FC = () => {
 
     let delivered = false;
 
-    // 1. Try Web3Forms if configured
+    // 1. Submit directly to Web3Forms using FormData
     if (WEB3FORMS_ACCESS_KEY && WEB3FORMS_ACCESS_KEY.trim() !== "") {
       try {
+        const formDataPayload = new FormData();
+        formDataPayload.append("access_key", WEB3FORMS_ACCESS_KEY.trim());
+        formDataPayload.append("name", values.name);
+        formDataPayload.append("email", values.email);
+        formDataPayload.append("business", values.businessName);
+        formDataPayload.append("business_type", values.businessType);
+        formDataPayload.append("website", values.website || "None provided");
+        formDataPayload.append("budget", values.budget);
+        formDataPayload.append("message", values.message);
+        formDataPayload.append("from_name", values.name);
+        formDataPayload.append(
+          "subject",
+          `[New Website Lead] ${values.name} (${values.businessName})`
+        );
+        formDataPayload.append("replyto", values.email);
+
         const web3Res = await fetch("https://api.web3forms.com/submit", {
           method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-          body: JSON.stringify({
-            access_key: WEB3FORMS_ACCESS_KEY.trim(),
-            subject: `[New Website Lead] ${values.name} (${values.businessName})`,
-            from_name: values.name,
-            email: values.email,
-            business: values.businessName,
-            business_type: values.businessType,
-            website: values.website || "None",
-            budget: values.budget,
-            message: values.message,
-            replyto: values.email,
-          }),
+          body: formDataPayload,
         });
 
         const web3Data = await web3Res.json().catch(() => ({}));

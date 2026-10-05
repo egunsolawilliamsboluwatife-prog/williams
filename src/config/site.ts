@@ -17,7 +17,7 @@ export const CONTACT_EMAIL = "williams.the.tech@gmail.com";
 export const WEB3FORMS_ACCESS_KEY: string =
   (typeof import.meta !== "undefined" && import.meta.env && import.meta.env.VITE_WEB3FORMS_ACCESS_KEY) ||
   (typeof process !== "undefined" && process.env && process.env.VITE_WEB3FORMS_ACCESS_KEY) ||
-  "";
+  "fcc66b34-57bd-4782-b094-d6939177554d";
 
 // Ambient Hero Video Background configuration
 export const HERO_VIDEO_SRC: string = "/videos/hero-background.mp4";

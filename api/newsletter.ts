@@ -17,7 +17,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(400).json({ ok: false, error: "invalid_email" });
   }
 
-  const web3Key = process.env.VITE_WEB3FORMS_ACCESS_KEY || process.env.WEB3FORMS_ACCESS_KEY;
+  const web3Key =
+    process.env.VITE_WEB3FORMS_ACCESS_KEY ||
+    process.env.WEB3FORMS_ACCESS_KEY ||
+    "fcc66b34-57bd-4782-b094-d6939177554d";
   if (web3Key && web3Key.trim() !== "") {
     try {
       await fetch("https://api.web3forms.com/submit", {

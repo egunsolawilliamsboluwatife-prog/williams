@@ -12,7 +12,7 @@ export const BookPage: React.FC = () => {
     <>
       <Seo
         title="Book a call | Williams"
-        description="Book a free 15-minute call with Williams via Google Meet or Cal.com. Available 24/7, pick any time. Or send an inquiry message."
+        description="Book a free 15-minute call with Williams via Google Meet. Available 24/7, pick any time. Or send an inquiry message."
         path="/book"
         image="/williams-warm-grey.jpg"
       />
@@ -31,8 +31,7 @@ export const BookPage: React.FC = () => {
                 </h1>
 
                 <p className="font-sans text-xl text-bone-muted leading-relaxed mb-4">
-                  Pick any time, any day. Choose between Google Meet or Cal.com,
-                  and the invite lands in your inbox as soon as you book.
+                  Pick any time, any day on Google Meet, and the invite lands in your inbox as soon as you book.
                 </p>
 
                 <p className="font-sans text-sm text-bone-subtle mb-10">

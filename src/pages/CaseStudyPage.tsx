@@ -58,7 +58,7 @@ export const CaseStudyPage: React.FC = () => {
               </Button>
               <Button
                 type="button"
-                onClick={() => openBookingModal("compare")}
+                onClick={() => openBookingModal()}
                 variant="secondary"
               >
                 Book a call

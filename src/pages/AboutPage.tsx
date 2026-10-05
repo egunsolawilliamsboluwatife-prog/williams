@@ -57,7 +57,7 @@ export const AboutPage: React.FC = () => {
     <>
       <Seo
         title="About | Williams"
-        description="I'm Williams. I design and build websites for US local businesses, and I've delivered 300+ of them."
+        description="I'm Williams. I design and build websites for US local businesses, and I've delivered 50+ of them."
         path="/about"
         image="/williams-navy-bokeh.jpg"
       />
@@ -103,7 +103,7 @@ export const AboutPage: React.FC = () => {
             <Reveal>
               <div className="flex flex-col items-start">
                 <span className="block font-display font-extrabold text-[clamp(4.5rem,2rem+10vw,10rem)] leading-[0.9] tracking-[-0.05em] text-bone opsz-96 select-none">
-                  300+
+                  50+
                 </span>
                 <h2 className="font-display font-semibold text-[clamp(2rem,1.4rem+2.4vw,3.25rem)] leading-[1.05] tracking-[-0.025em] text-bone-muted mt-2 opsz-72">
                   websites delivered

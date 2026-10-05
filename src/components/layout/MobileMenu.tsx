@@ -104,7 +104,7 @@ export const MobileMenu: React.FC<MobileMenuProps> = ({
           type="button"
           onClick={() => {
             onClose();
-            openBookingModal("compare");
+            openBookingModal();
           }}
           variant="primary"
           className="w-full h-12"

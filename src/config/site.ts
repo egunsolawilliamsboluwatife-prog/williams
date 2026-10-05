@@ -7,10 +7,6 @@ export const GOOGLE_MEET_EMBED_URL: string =
 export const BOOKING_URL: string = GOOGLE_MEET_URL;
 export const BOOKING_EMBED_URL: string = GOOGLE_MEET_EMBED_URL;
 
-// Cal.com scheduling link
-export const CAL_COM_URL: string = "https://cal.com/jackson-williams";
-export const CAL_COM_EMBED_URL: string = "https://cal.com/jackson-williams?embed=true";
-
 // Your live site origin, no trailing slash. Set in Vercel or leave empty for relative links.
 export const SITE_URL: string = "";
 
@@ -22,6 +18,10 @@ export const WEB3FORMS_ACCESS_KEY: string =
   (typeof import.meta !== "undefined" && import.meta.env && import.meta.env.VITE_WEB3FORMS_ACCESS_KEY) ||
   (typeof process !== "undefined" && process.env && process.env.VITE_WEB3FORMS_ACCESS_KEY) ||
   "";
+
+// Ambient Hero Video Background configuration
+export const HERO_VIDEO_SRC: string = "/videos/hero-background.mp4";
+export const HERO_VIDEO_POSTER: string = "/videos/hero-background-poster.jpg";
 
 export const SOCIALS = {
   facebook: "https://web.facebook.com/profile.php?id=61594974237916",

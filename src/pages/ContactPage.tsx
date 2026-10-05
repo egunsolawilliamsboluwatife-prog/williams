@@ -37,7 +37,7 @@ export const ContactPage: React.FC = () => {
               <span>Prefer to talk face-to-face?</span>
               <button
                 type="button"
-                onClick={() => openBookingModal("compare")}
+                onClick={() => openBookingModal()}
                 className="text-ember font-semibold hover:underline cursor-pointer inline-flex items-center gap-1"
               >
                 <CalendarCheck size={14} />

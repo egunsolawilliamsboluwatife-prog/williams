@@ -8,12 +8,6 @@ export interface Review {
   rating: number;
   date: string;
   quote: string;
-  highlight: string;
-  metricBadge?: {
-    value: string;
-    label: string;
-  };
-  serviceTier: string;
 }
 
 export const CLIENT_REVIEWS: Review[] = [
@@ -26,14 +20,8 @@ export const CLIENT_REVIEWS: Review[] = [
     avatar: "/images/reviews/marcus-vance.jpg",
     rating: 5,
     date: "September 2026",
-    highlight: "Online appointments jumped 42% in the first two weeks.",
     quote:
-      "Before working with Williams, our phones would ring non-stop during client fades, and we lost walk-ins. Williams built our site with 1-tap mobile booking and Google sync. We booked 38 appointments the first weekend alone without answering a single phone call.",
-    metricBadge: {
-      value: "+42%",
-      label: "Appointment increase",
-    },
-    serviceTier: "Signature Tier",
+      "Williams had our booking site live in days. We booked 38 appointments our first weekend without answering a single phone call. Best money we've spent on the shop.",
   },
   {
     id: "elena-rostova",
@@ -44,32 +32,20 @@ export const CLIENT_REVIEWS: Review[] = [
     avatar: "/images/reviews/elena-rostova.jpg",
     rating: 5,
     date: "August 2026",
-    highlight: "Direct communication with Williams — no account managers or delays.",
     quote:
-      "Most agencies try to sell you bloated WordPress templates that load like molasses. Williams engineered our firm's website in clean code. Our prospective corporate clients frequently tell us our site looks leagues ahead of older local accounting firms. The $59/mo care plan gives us peace of mind.",
-    metricBadge: {
-      value: "1.1s",
-      label: "Mobile load time",
-    },
-    serviceTier: "Growth Tier",
+      "Zero agency fluff or bloated templates. Our site loads in under a second, looks world-class, and prospective corporate clients take us seriously right away.",
   },
   {
     id: "david-chen",
     author: "David Chen",
     role: "Co-Founder",
-    business: "Skyline Event Rentals & Decor",
+    business: "Skyline Event Rentals",
     location: "Dallas, TX",
     avatar: "/images/reviews/david-chen.jpg",
     rating: 5,
     date: "July 2026",
-    highlight: "The interactive quote calculator paid for the website within 10 days.",
     quote:
-      "Our previous quote intake was a nightmare of back-and-forth emails. Williams built a custom equipment calculator that sends complete, qualified event inquiries straight into my Gmail inbox. It saved our front desk 15 hours a week and doubled our weekend corporate bookings.",
-    metricBadge: {
-      value: "2x",
-      label: "Qualified inquiries",
-    },
-    serviceTier: "Signature Tier",
+      "The custom quote calculator saved our front desk 15 hours a week. Inquiries land straight in my inbox already qualified. Total game changer for our weekend bookings.",
   },
   {
     id: "chloe-montgomery",
@@ -80,14 +56,8 @@ export const CLIENT_REVIEWS: Review[] = [
     avatar: "/images/reviews/chloe-montgomery.jpg",
     rating: 5,
     date: "June 2026",
-    highlight: "Ranked #1 on Google Local 3-Pack for local lash artists.",
     quote:
-      "Williams didn't just build a gorgeous website that looks like a high-fashion magazine — he set up our Google Business profile and local structured schema. Within 4 weeks, we jumped from nowhere to the #1 spot on Google Maps for local searches in our suburb.",
-    metricBadge: {
-      value: "#1",
-      label: "Local Google Rank",
-    },
-    serviceTier: "Signature Tier",
+      "We went from invisible to #1 on Google Maps in our area. The design looks like a luxury magazine and clients love booking directly on their phones.",
   },
   {
     id: "robert-hayes",
@@ -98,14 +68,8 @@ export const CLIENT_REVIEWS: Review[] = [
     avatar: "/images/reviews/robert-hayes.jpg",
     rating: 5,
     date: "May 2026",
-    highlight: "Zero tech jargon, delivered ahead of schedule, real results.",
     quote:
-      "I'm a tradesman, not a software guy. Williams was straight-up from day one. Told me what we needed, didn't push useless gimmicks, and delivered in 8 days. We booked 11 emergency repair jobs directly through the tap-to-call button on our first week live.",
-    metricBadge: {
-      value: "8 Days",
-      label: "Turnaround time",
-    },
-    serviceTier: "Launch Tier",
+      "Williams was straight-up from day one. No tech jargon or pushy upsells. Delivered in 8 days and our tap-to-call button booked 11 emergency jobs the very first week.",
   },
   {
     id: "amara-okafor",
@@ -116,13 +80,7 @@ export const CLIENT_REVIEWS: Review[] = [
     avatar: "/images/reviews/amara-okafor.jpg",
     rating: 5,
     date: "April 2026",
-    highlight: "High-trust design that immediately converts referral traffic.",
     quote:
-      "In commercial legal practice, credibility is everything. When clients search our name after a referral, our website immediately validates that trust. Williams created a typography and color palette that feels authoritative and modern. Couldn't recommend him more.",
-    metricBadge: {
-      value: "100%",
-      label: "Custom architecture",
-    },
-    serviceTier: "Growth Tier",
+      "When clients search our firm after a referral, the site immediately validates trust. Clean, lightning fast, and authoritative. Couldn't recommend Williams more.",
   },
 ];

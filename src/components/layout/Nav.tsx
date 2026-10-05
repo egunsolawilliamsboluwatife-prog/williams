@@ -86,7 +86,7 @@ export const Nav: React.FC = () => {
           <div className="flex items-center gap-2">
             <Button
               type="button"
-              onClick={() => openBookingModal("compare")}
+              onClick={() => openBookingModal()}
               variant="primary"
               className="h-10 md:h-11 px-4 md:px-7 text-sm md:text-base cursor-pointer"
             >

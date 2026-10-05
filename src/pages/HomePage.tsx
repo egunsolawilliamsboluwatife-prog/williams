@@ -16,6 +16,7 @@ import { CASE_STUDIES } from "../content/work.ts";
 import { PRICING_TIERS } from "../content/pricing.ts";
 import { useBooking } from "../context/BookingContext.tsx";
 import { ThreeHeroScene } from "../components/3d/ThreeHeroScene.tsx";
+import { VideoBackground } from "../components/ui/VideoBackground.tsx";
 import { Tilt3DCard } from "../components/ui/Tilt3DCard.tsx";
 import { AnimatedCounter } from "../components/ui/AnimatedCounter.tsx";
 
@@ -32,7 +33,7 @@ export const HomePage: React.FC = () => {
   const processSteps = [
     {
       title: "Book a call",
-      body: "Pick any 15-minute slot on Google Meet or Cal.com. The calendar is open 24/7.",
+      body: "Pick any 15-minute slot on Google Meet. The calendar is open 24/7.",
     },
     {
       title: "Pick your tier",
@@ -52,7 +53,7 @@ export const HomePage: React.FC = () => {
     <>
       <Seo
         title="Williams | Websites for US local businesses"
-        description="Custom websites for US local businesses, with booking, contact forms and SEO basics built in. 300+ websites delivered. Book a free 15-minute call."
+        description="Custom websites for US local businesses, with booking, contact forms and SEO basics built in. 50+ websites delivered. Book a free 15-minute call."
         path="/"
         image="/williams-warm-grey.jpg"
       />
@@ -62,8 +63,9 @@ export const HomePage: React.FC = () => {
         ref={heroSectionRef}
         className="relative min-h-[100dvh] pt-28 md:pt-32 pb-16 flex items-center overflow-hidden"
       >
+        <VideoBackground />
         <ThreeHeroScene />
-        <div className="max-w-[1240px] mx-auto px-5 md:px-8 lg:px-12 w-full">
+        <div className="max-w-[1240px] mx-auto px-5 md:px-8 lg:px-12 w-full relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
             {/* Left Content (cols 1-7) */}
             <div className="lg:col-span-7 flex flex-col items-start z-10">
@@ -104,7 +106,7 @@ export const HomePage: React.FC = () => {
               >
                 <Button
                   type="button"
-                  onClick={() => openBookingModal("compare")}
+                  onClick={() => openBookingModal()}
                   variant="primary"
                 >
                   Book a call
@@ -123,7 +125,7 @@ export const HomePage: React.FC = () => {
               >
                 <span className="flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-ember inline-block" />
-                  300+ sites delivered
+                  50+ sites delivered
                 </span>
                 <span className="flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block" />
@@ -184,7 +186,7 @@ export const HomePage: React.FC = () => {
                           Egunsola Williams
                         </h3>
                         <span className="text-[11px] font-mono text-emerald-400 bg-emerald-500/15 px-2 py-0.5 rounded font-medium border border-emerald-500/20">
-                          300+ Delivered
+                          50+ Delivered
                         </span>
                       </div>
                       <p className="font-sans text-xs text-bone-muted">
@@ -206,7 +208,7 @@ export const HomePage: React.FC = () => {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
               <div className="lg:col-span-8">
                 <AnimatedCounter
-                  value={300}
+                  value={50}
                   suffix="+"
                   className="block font-display font-extrabold text-[clamp(4.5rem,2rem+10vw,10rem)] leading-[0.9] tracking-[-0.05em] text-bone opsz-96 select-none"
                 />

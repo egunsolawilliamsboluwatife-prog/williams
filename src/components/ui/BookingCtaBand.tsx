@@ -23,13 +23,13 @@ export const BookingCtaBand: React.FC<BookingCtaBandProps> = ({
           </h2>
 
           <p className="font-sans text-lg md:text-xl text-bone-muted leading-relaxed max-w-[48ch] mb-8 text-pretty">
-            Pick any time, any day on Google Meet or Cal.com. We'll talk through
+            Pick any time, any day on Google Meet. We'll talk through
             your business and which tier fits.
           </p>
 
           <Button
             type="button"
-            onClick={() => openBookingModal("compare")}
+            onClick={() => openBookingModal()}
             variant="primary"
           >
             Book a call

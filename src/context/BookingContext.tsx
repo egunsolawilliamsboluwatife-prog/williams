@@ -6,7 +6,7 @@ import React, {
   ReactNode,
 } from "react";
 
-export type BookingModalTab = "compare" | "google-meet" | "cal-com";
+export type BookingModalTab = "google-meet";
 
 interface BookingContextType {
   isOpen: boolean;
@@ -22,10 +22,10 @@ export const BookingProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState<BookingModalTab>("compare");
+  const [activeTab, setActiveTab] = useState<BookingModalTab>("google-meet");
 
   const openBookingModal = useCallback(
-    (defaultTab: BookingModalTab = "compare") => {
+    (defaultTab: BookingModalTab = "google-meet") => {
       setActiveTab(defaultTab);
       setIsOpen(true);
     },

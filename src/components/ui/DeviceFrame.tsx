@@ -19,7 +19,10 @@ export const DeviceFrame: React.FC<DeviceFrameProps> = ({
 }) => {
   if (kind === "laptop") {
     return (
-      <div className={`relative flex flex-col items-center select-none ${className}`}>
+      <div
+        className={`relative flex flex-col items-center select-none pointer-events-none ${className}`}
+        aria-hidden="true"
+      >
         {/* Screen Bezel */}
         <div className="w-full bg-[#1B2233] p-2.5 rounded-t-[24px] rounded-b-[8px] shadow-[var(--shadow-soft)] ring-1 ring-white/5">
           <div className="w-full aspect-[1440/900] rounded-[14px] overflow-hidden bg-navy relative">
@@ -30,11 +33,12 @@ export const DeviceFrame: React.FC<DeviceFrameProps> = ({
                 alt={alt}
                 width={1440}
                 height={900}
+                draggable={false}
                 loading={priority ? undefined : "lazy"}
                 fetchPriority={priority ? "high" : "auto"}
                 decoding="async"
                 referrerPolicy="no-referrer"
-                className="w-full h-full object-cover object-top block"
+                className="w-full h-full object-cover object-top block select-none pointer-events-none"
               />
             </picture>
           </div>
@@ -58,7 +62,8 @@ export const DeviceFrame: React.FC<DeviceFrameProps> = ({
   // kind === "phone"
   return (
     <div
-      className={`relative bg-[#1B2233] p-2 rounded-[36px] shadow-[var(--shadow-soft)] ring-1 ring-white/5 inline-block select-none ${className}`}
+      className={`relative bg-[#1B2233] p-2 rounded-[36px] shadow-[var(--shadow-soft)] ring-1 ring-white/5 inline-block select-none pointer-events-none ${className}`}
+      aria-hidden="true"
     >
       <div className="w-full aspect-[390/844] rounded-[28px] overflow-hidden bg-navy relative">
         <picture>
@@ -68,11 +73,12 @@ export const DeviceFrame: React.FC<DeviceFrameProps> = ({
             alt={alt}
             width={780}
             height={1688}
+            draggable={false}
             loading={priority ? undefined : "lazy"}
             fetchPriority={priority ? "high" : "auto"}
             decoding="async"
             referrerPolicy="no-referrer"
-            className="w-full h-full object-cover object-top block"
+            className="w-full h-full object-cover object-top block select-none pointer-events-none"
           />
         </picture>
       </div>

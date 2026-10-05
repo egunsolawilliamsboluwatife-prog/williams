@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { ArrowRight } from "@phosphor-icons/react";
 import { motion, useReducedMotion } from "motion/react";
 import { Seo } from "../components/ui/Seo.tsx";
@@ -21,6 +21,7 @@ import { Tilt3DCard } from "../components/ui/Tilt3DCard.tsx";
 import { AnimatedCounter } from "../components/ui/AnimatedCounter.tsx";
 
 export const HomePage: React.FC = () => {
+  const navigate = useNavigate();
   const { openBookingModal } = useBooking();
   const heroSectionRef = useRef<HTMLElement>(null);
   const shouldReduceMotion = useReducedMotion();
@@ -241,12 +242,16 @@ export const HomePage: React.FC = () => {
             {/* Card A: Barber's Society (cols 1-7, row 1) */}
             <div className="lg:col-span-7">
               <Reveal>
-                <Tilt3DCard maxTilt={5} className="h-full">
+                <Tilt3DCard
+                  maxTilt={5}
+                  className="h-full cursor-pointer"
+                  onClick={() => navigate(`/work/${projectA.slug}`)}
+                >
                   <Link
                     to={`/work/${projectA.slug}`}
-                    className="group block glass p-6 md:p-8 rounded-[24px] h-full transition-transform duration-300 hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-ember outline-none"
+                    className="group block glass p-6 md:p-8 rounded-[24px] h-full transition-all duration-300 hover:-translate-y-1 hover:border-line-strong focus-visible:ring-2 focus-visible:ring-ember outline-none cursor-pointer relative z-10 select-none"
                   >
-                    <div className="mb-6">
+                    <div className="mb-6 pointer-events-none">
                       <DeviceFrame
                         kind="laptop"
                         src={projectA.desktopImage}
@@ -254,16 +259,16 @@ export const HomePage: React.FC = () => {
                         alt={projectA.altDesktop}
                       />
                     </div>
-                    <h3 className="font-display font-bold text-2xl text-bone mb-1 tracking-tight">
+                    <h3 className="font-display font-bold text-2xl text-bone mb-1 tracking-tight group-hover:text-ember transition-colors">
                       {projectA.name}
                     </h3>
                     <p className="font-sans text-sm text-bone-subtle mb-4">
                       {projectA.metaLine}
                     </p>
-                    <span className="inline-flex items-center gap-1.5 font-sans font-medium text-ember text-sm group-hover:translate-x-1 transition-transform">
+                    <div className="inline-flex items-center gap-1.5 font-sans font-semibold text-ember group-hover:text-ember-bright text-sm transition-colors cursor-pointer">
                       <span>View case study</span>
-                      <ArrowRight size={16} />
-                    </span>
+                      <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                    </div>
                   </Link>
                 </Tilt3DCard>
               </Reveal>
@@ -272,12 +277,16 @@ export const HomePage: React.FC = () => {
             {/* Card B: Best CPA Services (cols 8-12, row 1-2) */}
             <div className="lg:col-span-5 lg:row-span-2">
               <Reveal delay={0.06}>
-                <Tilt3DCard maxTilt={5} className="h-full">
+                <Tilt3DCard
+                  maxTilt={5}
+                  className="h-full cursor-pointer"
+                  onClick={() => navigate(`/work/${projectB.slug}`)}
+                >
                   <Link
                     to={`/work/${projectB.slug}`}
-                    className="group block bg-navy border border-line p-6 md:p-8 rounded-[24px] h-full flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-ember outline-none"
+                    className="group block bg-navy border border-line p-6 md:p-8 rounded-[24px] h-full flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:border-line-strong focus-visible:ring-2 focus-visible:ring-ember outline-none cursor-pointer relative z-10 select-none"
                   >
-                    <div className="flex justify-center items-center py-6">
+                    <div className="flex justify-center items-center py-6 pointer-events-none">
                       <div className="w-[75%] max-w-[260px]">
                         <DeviceFrame
                           kind="phone"
@@ -288,16 +297,16 @@ export const HomePage: React.FC = () => {
                       </div>
                     </div>
                     <div className="pt-4">
-                      <h3 className="font-display font-bold text-2xl text-bone mb-1 tracking-tight">
+                      <h3 className="font-display font-bold text-2xl text-bone mb-1 tracking-tight group-hover:text-ember transition-colors">
                         {projectB.name}
                       </h3>
                       <p className="font-sans text-sm text-bone-subtle mb-4">
                         {projectB.metaLine}
                       </p>
-                      <span className="inline-flex items-center gap-1.5 font-sans font-medium text-ember text-sm group-hover:translate-x-1 transition-transform">
+                      <div className="inline-flex items-center gap-1.5 font-sans font-semibold text-ember group-hover:text-ember-bright text-sm transition-colors cursor-pointer">
                         <span>View case study</span>
-                        <ArrowRight size={16} />
-                      </span>
+                        <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                      </div>
                     </div>
                   </Link>
                 </Tilt3DCard>
@@ -307,12 +316,16 @@ export const HomePage: React.FC = () => {
             {/* Card C: Best Makeup & Best Lashes (cols 1-3, row 2) */}
             <div className="lg:col-span-4">
               <Reveal delay={0.12}>
-                <Tilt3DCard maxTilt={5} className="h-full">
+                <Tilt3DCard
+                  maxTilt={5}
+                  className="h-full cursor-pointer"
+                  onClick={() => navigate(`/work/${projectC.slug}`)}
+                >
                   <Link
                     to={`/work/${projectC.slug}`}
-                    className="group block glass p-6 md:p-8 rounded-[24px] h-full flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-ember outline-none"
+                    className="group block glass p-6 md:p-8 rounded-[24px] h-full flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:border-line-strong focus-visible:ring-2 focus-visible:ring-ember outline-none cursor-pointer relative z-10 select-none"
                   >
-                    <div className="flex justify-center mb-6">
+                    <div className="flex justify-center mb-6 pointer-events-none">
                       <div className="w-[70%] max-w-[200px]">
                         <DeviceFrame
                           kind="phone"
@@ -323,16 +336,16 @@ export const HomePage: React.FC = () => {
                       </div>
                     </div>
                     <div>
-                      <h3 className="font-display font-bold text-xl text-bone mb-1 tracking-tight">
+                      <h3 className="font-display font-bold text-xl text-bone mb-1 tracking-tight group-hover:text-ember transition-colors">
                         {projectC.name}
                       </h3>
                       <p className="font-sans text-sm text-bone-subtle mb-4">
                         {projectC.metaLine}
                       </p>
-                      <span className="inline-flex items-center gap-1.5 font-sans font-medium text-ember text-sm group-hover:translate-x-1 transition-transform">
+                      <div className="inline-flex items-center gap-1.5 font-sans font-semibold text-ember group-hover:text-ember-bright text-sm transition-colors cursor-pointer">
                         <span>View case study</span>
-                        <ArrowRight size={16} />
-                      </span>
+                        <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                      </div>
                     </div>
                   </Link>
                 </Tilt3DCard>
@@ -342,12 +355,16 @@ export const HomePage: React.FC = () => {
             {/* Card D: George Dimov CPA (cols 4-7, row 2) */}
             <div className="lg:col-span-3">
               <Reveal delay={0.18}>
-                <Tilt3DCard maxTilt={5} className="h-full">
+                <Tilt3DCard
+                  maxTilt={5}
+                  className="h-full cursor-pointer"
+                  onClick={() => navigate(`/work/${projectD.slug}`)}
+                >
                   <Link
                     to={`/work/${projectD.slug}`}
-                    className="group block glass p-6 md:p-8 rounded-[24px] h-full flex flex-col justify-between transition-transform duration-300 hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-ember outline-none"
+                    className="group block glass p-6 md:p-8 rounded-[24px] h-full flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:border-line-strong focus-visible:ring-2 focus-visible:ring-ember outline-none cursor-pointer relative z-10 select-none"
                   >
-                    <div className="mb-6">
+                    <div className="mb-6 pointer-events-none">
                       <DeviceFrame
                         kind="laptop"
                         src={projectD.desktopImage}
@@ -356,16 +373,16 @@ export const HomePage: React.FC = () => {
                       />
                     </div>
                     <div>
-                      <h3 className="font-display font-bold text-xl text-bone mb-1 tracking-tight">
+                      <h3 className="font-display font-bold text-xl text-bone mb-1 tracking-tight group-hover:text-ember transition-colors">
                         {projectD.name}
                       </h3>
                       <p className="font-sans text-sm text-bone-subtle mb-4">
                         {projectD.metaLine}
                       </p>
-                      <span className="inline-flex items-center gap-1.5 font-sans font-medium text-ember text-sm group-hover:translate-x-1 transition-transform">
+                      <div className="inline-flex items-center gap-1.5 font-sans font-semibold text-ember group-hover:text-ember-bright text-sm transition-colors cursor-pointer">
                         <span>View case study</span>
-                        <ArrowRight size={16} />
-                      </span>
+                        <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                      </div>
                     </div>
                   </Link>
                 </Tilt3DCard>

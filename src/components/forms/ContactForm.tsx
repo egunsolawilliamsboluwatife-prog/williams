@@ -7,7 +7,6 @@ import {
   BUDGET_OPTIONS,
 } from "../../lib/contactSchema.ts";
 import { CONTACT_EMAIL, WEB3FORMS_ACCESS_KEY } from "../../config/site.ts";
-import { saveContactLead } from "../../lib/leads.ts";
 import { Button } from "../ui/Button.tsx";
 
 interface FormValues {
@@ -189,16 +188,6 @@ export const ContactForm: React.FC = () => {
         }
       } catch {}
     }
-
-    // 3. Always save to local lead archive
-    saveContactLead({
-      name: values.name,
-      email: values.email,
-      business: values.businessName,
-      budget: values.budget,
-      message: values.message,
-      deliveredToWeb3Forms: delivered,
-    });
 
     setIsSubmitting(false);
     setIsSuccess(true);

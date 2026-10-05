@@ -9,7 +9,6 @@ import {
   ArrowClockwise,
 } from "@phosphor-icons/react";
 import { CONTACT_EMAIL, WEB3FORMS_ACCESS_KEY } from "../../config/site.ts";
-import { saveContactLead } from "../../lib/leads.ts";
 
 export const ClientIntakeForm: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -37,7 +36,7 @@ export const ClientIntakeForm: React.FC = () => {
 
     let sentSuccessfully = false;
 
-    // 1. If Web3Forms Access Key is provided, attempt delivery to Gmail
+    // 1. If Web3Forms Access Key is provided in client, attempt delivery
     if (WEB3FORMS_ACCESS_KEY && WEB3FORMS_ACCESS_KEY.trim() !== "") {
       try {
         const res = await fetch("https://api.web3forms.com/submit", {
@@ -64,19 +63,32 @@ export const ClientIntakeForm: React.FC = () => {
           setDeliveredViaWeb3Forms(true);
         }
       } catch (err) {
-        console.warn("Web3Forms transmission error:", err);
+        console.warn("Web3Forms transmission notice:", err);
       }
     }
 
-    // 2. Guarantee lead persistence in local inbox storage
-    saveContactLead({
-      name: formData.name,
-      email: formData.email,
-      business: formData.business,
-      budget: formData.budget,
-      message: formData.message,
-      deliveredToWeb3Forms: sentSuccessfully,
-    });
+    // 2. Send to /api/contact (which reads server-side WEB3FORMS_ACCESS_KEY from Vercel)
+    try {
+      const apiRes = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          businessName: formData.business || "Not specified",
+          budget: formData.budget,
+          message: formData.message,
+          source: "popup",
+        }),
+      });
+      const apiData = await apiRes.json().catch(() => ({}));
+      if (apiRes.ok && (apiData.ok || apiData.provider === "web3forms")) {
+        sentSuccessfully = true;
+        setDeliveredViaWeb3Forms(true);
+      }
+    } catch (err) {
+      console.warn("API route contact notice:", err);
+    }
 
     setIsSubmitting(false);
     setIsSuccess(true);

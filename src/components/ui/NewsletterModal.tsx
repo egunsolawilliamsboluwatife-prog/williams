@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { X, EnvelopeSimple, CheckCircle, Sparkle } from "@phosphor-icons/react";
 import { CONTACT_EMAIL, WEB3FORMS_ACCESS_KEY } from "../../config/site.ts";
-import { saveNewsletterLead } from "../../lib/leads.ts";
 
 export const NewsletterModal: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -99,11 +98,9 @@ export const NewsletterModal: React.FC = () => {
         body: JSON.stringify({ email }),
       }).catch(() => null);
 
-      saveNewsletterLead(email, delivered);
       setIsSuccess(true);
       sessionStorage.setItem("newsletter_popup_dismissed", "true");
     } catch {
-      saveNewsletterLead(email, false);
       setIsSuccess(true);
       sessionStorage.setItem("newsletter_popup_dismissed", "true");
     } finally {

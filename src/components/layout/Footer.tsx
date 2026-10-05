@@ -110,10 +110,10 @@ export const Footer: React.FC = () => {
           </p>
 
           <Link
-            to="/inbox"
-            className="font-mono text-xs text-bone-subtle/70 hover:text-ember transition-colors flex items-center gap-1.5"
+            to="/privacy"
+            className="font-mono text-xs text-bone-subtle/70 hover:text-ember transition-colors"
           >
-            <span>Owner Leads Inbox</span>
+            Privacy Policy
           </Link>
         </div>
       </div>

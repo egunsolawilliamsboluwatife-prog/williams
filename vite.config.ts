@@ -89,11 +89,50 @@ function devApiPlugin(): Plugin {
           req.on("data", (chunk) => {
             body += chunk;
           });
-          req.on("end", () => {
-            console.log(`[Dev API Handler] Received ${req.url}:`, body);
+          req.on("end", async () => {
+            const key = process.env.WEB3FORMS_ACCESS_KEY || process.env.VITE_WEB3FORMS_ACCESS_KEY;
+            let forwarded = false;
+            if (key && key.trim() !== "") {
+              try {
+                const parsed = JSON.parse(body || "{}");
+                const isNewsletter = req.url === "/api/newsletter";
+                const payload = isNewsletter
+                  ? {
+                      access_key: key.trim(),
+                      subject: `[New Newsletter Subscriber] ${parsed.email}`,
+                      email: parsed.email,
+                      from_name: "Williams Portfolio Newsletter",
+                      message: `New subscriber: ${parsed.email}`,
+                    }
+                  : {
+                      access_key: key.trim(),
+                      subject: `[New Website Lead] ${parsed.name || "Client"} - ${parsed.businessName || parsed.business || "Local Business"}`,
+                      from_name: parsed.name,
+                      email: parsed.email,
+                      replyto: parsed.email,
+                      business: parsed.businessName || parsed.business,
+                      budget: parsed.budget,
+                      message: parsed.message,
+                    };
+
+                const web3Res = await fetch("https://api.web3forms.com/submit", {
+                  method: "POST",
+                  headers: { "Content-Type": "application/json", Accept: "application/json" },
+                  body: JSON.stringify(payload),
+                });
+                const web3Data = await web3Res.json().catch(() => ({}));
+                forwarded = web3Data.success || web3Res.ok;
+                console.log(`[Dev API Handler] Forwarded ${req.url} to Web3Forms:`, forwarded ? "SUCCESS" : web3Data);
+              } catch (err) {
+                console.warn("[Dev API Handler] Web3Forms forward error:", err);
+              }
+            } else {
+              console.log(`[Dev API Handler] Received ${req.url} (no Web3Forms key set in dev env):`, body);
+            }
+
             res.setHeader("Content-Type", "application/json");
             res.statusCode = 200;
-            res.end(JSON.stringify({ ok: true, devMode: true }));
+            res.end(JSON.stringify({ ok: true, devMode: true, forwarded }));
           });
           return;
         }

@@ -12,7 +12,7 @@ export const ClientIntakeForm: React.FC = () => {
     name: "",
     email: "",
     business: "",
-    budget: "Growth (starting at $1,500)",
+    budget: "Growth (starting at $1,000)",
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -106,7 +106,7 @@ export const ClientIntakeForm: React.FC = () => {
                 name: "",
                 email: "",
                 business: "",
-                budget: "Growth (starting at $1,500)",
+                budget: "Growth (starting at $1,000)",
                 message: "",
               });
             }}
@@ -178,9 +178,9 @@ export const ClientIntakeForm: React.FC = () => {
           onChange={(e) => setFormData({ ...formData, budget: e.target.value })}
           className="w-full px-4 py-3 rounded-xl bg-navy border border-line text-bone font-sans text-sm focus:border-ember focus:ring-1 focus:ring-ember outline-none transition-all cursor-pointer"
         >
-          <option value="Starter (starting at $900)">Starter Package (starting at $900)</option>
-          <option value="Growth (starting at $1,500)">Growth Package (starting at $1,500) — Most Popular</option>
-          <option value="Bespoke Platform ($2,500+)">Bespoke Platform ($2,500+)</option>
+          <option value="Launch (starting at $600)">Launch Package (starting at $600)</option>
+          <option value="Growth (starting at $1,000)">Growth Package (starting at $1,000) — Most Popular</option>
+          <option value="Signature (starting at $1,500)">Signature Package (starting at $1,500)</option>
         </select>
       </div>
 

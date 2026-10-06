@@ -19,7 +19,7 @@ export const ServicesPage: React.FC = () => {
     <>
       <Seo
         title="Services and pricing | Williams"
-        description="Website packages starting at $1,000, $1,500 and $2,300, plus a $59/month care plan for hosting, SSL, monitoring, small edits and fixes."
+        description="Website packages starting at $600, $1,000 and $1,500, plus a $59/month care plan for hosting, SSL, monitoring, small edits and fixes."
         path="/services"
       />
 

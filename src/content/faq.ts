@@ -6,7 +6,7 @@ export interface FaqItem {
 export const faq: FaqItem[] = [
   {
     q: "How much does a website cost?",
-    a: "Launch starts at $1,000, Growth at $1,500 and Signature at $2,300. The care plan is $59 a month. Your exact price depends on the pages and features you need, and you'll get it after we talk.",
+    a: "Launch starts at $600, Growth at $1,000 and Signature at $1,500. The care plan is $59 a month. Your exact price depends on the pages and features you need, and you'll get it after we talk.",
   },
   {
     q: "What's the difference between the tiers?",

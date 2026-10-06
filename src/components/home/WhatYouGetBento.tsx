@@ -479,7 +479,7 @@ export const WhatYouGetBento: React.FC = () => {
             Need these 5 pillars for your business?
           </h3>
           <p className="font-sans text-xs md:text-sm text-bone-muted">
-            Launch ($1,000+), Growth ($1,500+), and Signature ($2,300+) with custom feature scoping.
+            Launch ($600+), Growth ($1,000+), and Signature ($1,500+) with custom feature scoping.
           </p>
         </div>
 

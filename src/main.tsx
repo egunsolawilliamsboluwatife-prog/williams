@@ -15,6 +15,16 @@ if (typeof window !== "undefined") {
   } catch {
     // Ignore
   }
+
+  // Handle Vite stale chunk dynamic import failures when a new deployment occurs
+  window.addEventListener("vite:preloadError", (event) => {
+    event.preventDefault();
+    const hasReloaded = sessionStorage.getItem("vite_preload_retry") === "true";
+    if (!hasReloaded) {
+      sessionStorage.setItem("vite_preload_retry", "true");
+      window.location.reload();
+    }
+  });
 }
 
 import "@fontsource-variable/bricolage-grotesque/opsz.css";

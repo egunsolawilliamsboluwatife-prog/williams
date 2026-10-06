@@ -9,7 +9,7 @@ export interface PricingTierItem {
 export const PRICING_TIERS: PricingTierItem[] = [
   {
     name: "Launch",
-    price: 1000,
+    price: 600,
     summary: "For a business that needs one strong page that works.",
     includes: [
       "1 custom page with motion",
@@ -19,7 +19,7 @@ export const PRICING_TIERS: PricingTierItem[] = [
   },
   {
     name: "Growth",
-    price: 1500,
+    price: 1000,
     summary: "For a business that needs room to explain its services.",
     includes: [
       "4 to 5 pages",
@@ -29,7 +29,7 @@ export const PRICING_TIERS: PricingTierItem[] = [
   },
   {
     name: "Signature",
-    price: 2300,
+    price: 1500,
     highlighted: true,
     summary: "For a business that wants to stand out from its competitors.",
     includes: [

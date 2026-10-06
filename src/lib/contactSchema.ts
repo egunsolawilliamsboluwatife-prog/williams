@@ -13,9 +13,9 @@ export const BUSINESS_TYPES = [
 ] as const;
 
 export const BUDGET_OPTIONS = [
-  "Launch (starting at $1,000)",
-  "Growth (starting at $1,500)",
-  "Signature (starting at $2,300)",
+  "Launch (starting at $600)",
+  "Growth (starting at $1,000)",
+  "Signature (starting at $1,500)",
   "Not sure yet",
 ] as const;
 

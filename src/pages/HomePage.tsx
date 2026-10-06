@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 import { Link, useNavigate } from "react-router";
-import { ArrowRight } from "@phosphor-icons/react";
+import { ArrowRight, ArrowUpRight } from "@phosphor-icons/react";
 import { motion, useReducedMotion } from "motion/react";
 import { Seo } from "../components/ui/Seo.tsx";
 import { AvailabilityDot } from "../components/ui/AvailabilityDot.tsx";
@@ -26,10 +26,7 @@ export const HomePage: React.FC = () => {
   const heroSectionRef = useRef<HTMLElement>(null);
   const shouldReduceMotion = useReducedMotion();
 
-  const projectA = CASE_STUDIES[0];
-  const projectB = CASE_STUDIES[1];
-  const projectC = CASE_STUDIES[2];
-  const projectD = CASE_STUDIES[3];
+  const marqueeProjects = [...CASE_STUDIES, ...CASE_STUDIES];
 
   const processSteps = [
     {
@@ -38,7 +35,7 @@ export const HomePage: React.FC = () => {
     },
     {
       title: "Pick your tier",
-      body: "We talk about your business and choose Launch, Growth or Signature. Prices start at $1,000.",
+      body: "We talk about your business and choose Launch, Growth or Signature. Prices start at $600.",
     },
     {
       title: "I design and build",
@@ -229,171 +226,115 @@ export const HomePage: React.FC = () => {
         </div>
       </section>
 
-      {/* 3. RECENT WORK (Asymmetric Media Grid) */}
-      <section className="py-24 md:py-32">
-        <div className="max-w-[1240px] mx-auto px-5 md:px-8 lg:px-12">
-          <div className="flex items-end justify-between mb-12">
-            <h2 className="font-display font-semibold text-[clamp(2rem,1.4rem+2.4vw,3.25rem)] text-bone tracking-tight opsz-72">
-              Recent work
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-8">
-            {/* Card A: Barber's Society (cols 1-7, row 1) */}
-            <div className="lg:col-span-7">
+      {/* 3. RECENT WORK (Auto-scrolling Horizontal Marquee) */}
+      <section className="py-24 md:py-32 overflow-hidden relative">
+        <div className="max-w-[1240px] mx-auto px-5 md:px-8 lg:px-12 mb-10 md:mb-12">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div>
               <Reveal>
-                <Tilt3DCard
-                  maxTilt={5}
-                  className="h-full cursor-pointer"
-                  onClick={() => navigate(`/work/${projectA.slug}`)}
-                >
-                  <Link
-                    to={`/work/${projectA.slug}`}
-                    className="group block glass p-6 md:p-8 rounded-[24px] h-full transition-all duration-300 hover:-translate-y-1 hover:border-line-strong focus-visible:ring-2 focus-visible:ring-ember outline-none cursor-pointer relative z-10 select-none"
-                  >
-                    <div className="mb-6 pointer-events-none">
-                      <DeviceFrame
-                        kind="laptop"
-                        src={projectA.desktopImage}
-                        fallbackSrc={projectA.desktopFallback}
-                        alt={projectA.altDesktop}
-                      />
-                    </div>
-                    <h3 className="font-display font-bold text-2xl text-bone mb-1 tracking-tight group-hover:text-ember transition-colors">
-                      {projectA.name}
-                    </h3>
-                    <p className="font-sans text-sm text-bone-subtle mb-4">
-                      {projectA.metaLine}
-                    </p>
-                    <div className="inline-flex items-center gap-1.5 font-sans font-semibold text-ember group-hover:text-ember-bright text-sm transition-colors cursor-pointer">
-                      <span>View case study</span>
-                      <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                    </div>
-                  </Link>
-                </Tilt3DCard>
+                <span className="font-mono text-xs text-ember font-medium uppercase tracking-widest block mb-2">
+                  Client Showcase · 11 Live Websites
+                </span>
+              </Reveal>
+
+              <Reveal delay={0.05}>
+                <h2 className="font-display font-semibold text-[clamp(2rem,1.4rem+2.4vw,3.25rem)] text-bone tracking-tight opsz-72">
+                  Recent work
+                </h2>
+              </Reveal>
+
+              <Reveal delay={0.1}>
+                <p className="font-sans text-base md:text-lg text-bone-muted max-w-[50ch] leading-relaxed mt-2">
+                  Live websites engineered for US local businesses. Drag or let it scroll automatically.
+                </p>
               </Reveal>
             </div>
 
-            {/* Card B: Best CPA Services (cols 8-12, row 1-2) */}
-            <div className="lg:col-span-5 lg:row-span-2">
-              <Reveal delay={0.06}>
-                <Tilt3DCard
-                  maxTilt={5}
-                  className="h-full cursor-pointer"
-                  onClick={() => navigate(`/work/${projectB.slug}`)}
-                >
-                  <Link
-                    to={`/work/${projectB.slug}`}
-                    className="group block bg-navy border border-line p-6 md:p-8 rounded-[24px] h-full flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:border-line-strong focus-visible:ring-2 focus-visible:ring-ember outline-none cursor-pointer relative z-10 select-none"
-                  >
-                    <div className="flex justify-center items-center py-6 pointer-events-none">
-                      <div className="w-[75%] max-w-[260px]">
-                        <DeviceFrame
-                          kind="phone"
-                          src={projectB.mobileImage}
-                          fallbackSrc={projectB.mobileFallback}
-                          alt={projectB.altMobile}
-                        />
-                      </div>
-                    </div>
-                    <div className="pt-4">
-                      <h3 className="font-display font-bold text-2xl text-bone mb-1 tracking-tight group-hover:text-ember transition-colors">
-                        {projectB.name}
-                      </h3>
-                      <p className="font-sans text-sm text-bone-subtle mb-4">
-                        {projectB.metaLine}
-                      </p>
-                      <div className="inline-flex items-center gap-1.5 font-sans font-semibold text-ember group-hover:text-ember-bright text-sm transition-colors cursor-pointer">
-                        <span>View case study</span>
-                        <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                      </div>
-                    </div>
-                  </Link>
-                </Tilt3DCard>
-              </Reveal>
-            </div>
-
-            {/* Card C: Best Makeup & Best Lashes (cols 1-3, row 2) */}
-            <div className="lg:col-span-4">
-              <Reveal delay={0.12}>
-                <Tilt3DCard
-                  maxTilt={5}
-                  className="h-full cursor-pointer"
-                  onClick={() => navigate(`/work/${projectC.slug}`)}
-                >
-                  <Link
-                    to={`/work/${projectC.slug}`}
-                    className="group block glass p-6 md:p-8 rounded-[24px] h-full flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:border-line-strong focus-visible:ring-2 focus-visible:ring-ember outline-none cursor-pointer relative z-10 select-none"
-                  >
-                    <div className="flex justify-center mb-6 pointer-events-none">
-                      <div className="w-[70%] max-w-[200px]">
-                        <DeviceFrame
-                          kind="phone"
-                          src={projectC.mobileImage}
-                          fallbackSrc={projectC.mobileFallback}
-                          alt={projectC.altMobile}
-                        />
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="font-display font-bold text-xl text-bone mb-1 tracking-tight group-hover:text-ember transition-colors">
-                        {projectC.name}
-                      </h3>
-                      <p className="font-sans text-sm text-bone-subtle mb-4">
-                        {projectC.metaLine}
-                      </p>
-                      <div className="inline-flex items-center gap-1.5 font-sans font-semibold text-ember group-hover:text-ember-bright text-sm transition-colors cursor-pointer">
-                        <span>View case study</span>
-                        <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                      </div>
-                    </div>
-                  </Link>
-                </Tilt3DCard>
-              </Reveal>
-            </div>
-
-            {/* Card D: George Dimov CPA (cols 4-7, row 2) */}
-            <div className="lg:col-span-3">
-              <Reveal delay={0.18}>
-                <Tilt3DCard
-                  maxTilt={5}
-                  className="h-full cursor-pointer"
-                  onClick={() => navigate(`/work/${projectD.slug}`)}
-                >
-                  <Link
-                    to={`/work/${projectD.slug}`}
-                    className="group block glass p-6 md:p-8 rounded-[24px] h-full flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 hover:border-line-strong focus-visible:ring-2 focus-visible:ring-ember outline-none cursor-pointer relative z-10 select-none"
-                  >
-                    <div className="mb-6 pointer-events-none">
-                      <DeviceFrame
-                        kind="laptop"
-                        src={projectD.desktopImage}
-                        fallbackSrc={projectD.desktopFallback}
-                        alt={projectD.altDesktop}
-                      />
-                    </div>
-                    <div>
-                      <h3 className="font-display font-bold text-xl text-bone mb-1 tracking-tight group-hover:text-ember transition-colors">
-                        {projectD.name}
-                      </h3>
-                      <p className="font-sans text-sm text-bone-subtle mb-4">
-                        {projectD.metaLine}
-                      </p>
-                      <div className="inline-flex items-center gap-1.5 font-sans font-semibold text-ember group-hover:text-ember-bright text-sm transition-colors cursor-pointer">
-                        <span>View case study</span>
-                        <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                      </div>
-                    </div>
-                  </Link>
-                </Tilt3DCard>
-              </Reveal>
-            </div>
+            <Reveal delay={0.15}>
+              <Button to="/work" variant="secondary">
+                See all 11 projects
+              </Button>
+            </Reveal>
           </div>
+        </div>
 
-          <div className="mt-12 flex justify-end">
-            <Button to="/work" variant="secondary">
-              See the work
-            </Button>
+        {/* Infinite Horizontal Auto-Moving Track */}
+        <div className="relative w-full overflow-hidden group py-4">
+          {/* Left & Right Gradient Fade Masks */}
+          <div
+            className="pointer-events-none absolute left-0 top-0 bottom-0 w-16 sm:w-28 md:w-44 bg-gradient-to-r from-[#0B0F1A] via-[#0B0F1A]/80 to-transparent z-10"
+            aria-hidden="true"
+          />
+          <div
+            className="pointer-events-none absolute right-0 top-0 bottom-0 w-16 sm:w-28 md:w-44 bg-gradient-to-l from-[#0B0F1A] via-[#0B0F1A]/80 to-transparent z-10"
+            aria-hidden="true"
+          />
+
+          {/* Moving Marquee Track */}
+          <div className="work-marquee-track gap-6 px-4">
+            {marqueeProjects.map((project, idx) => (
+              <div
+                key={`${project.slug}-${idx}`}
+                className="w-[330px] sm:w-[390px] md:w-[450px] shrink-0 p-5 sm:p-6 rounded-[24px] bg-navy/80 border border-line hover:border-line-strong hover:bg-navy-raised transition-all duration-300 flex flex-col justify-between shadow-lg group"
+              >
+                <div>
+                  {/* Laptop Mockup Preview */}
+                  <div className="mb-5 overflow-hidden rounded-[14px] bg-navy-deep border border-line/60 p-2 sm:p-3 pointer-events-none">
+                    <DeviceFrame
+                      kind="laptop"
+                      src={project.desktopImage}
+                      fallbackSrc={project.desktopFallback}
+                      alt={project.altDesktop}
+                    />
+                  </div>
+
+                  {/* Niche & Location */}
+                  <div className="flex items-center justify-between text-xs font-mono text-bone-subtle mb-1.5">
+                    <span className="truncate pr-2">{project.niche}</span>
+                    <span className="shrink-0">{project.location}</span>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="font-display font-bold text-xl sm:text-2xl text-bone mb-2 tracking-tight group-hover:text-ember transition-colors">
+                    {project.name}
+                  </h3>
+
+                  {/* Summary */}
+                  <p className="font-sans text-xs sm:text-sm text-bone-muted leading-relaxed line-clamp-2">
+                    {project.summary}
+                  </p>
+                </div>
+
+                {/* Footer Action Links */}
+                <div className="pt-4 mt-5 border-t border-line/60 flex items-center justify-between">
+                  <Link
+                    to={`/work/${project.slug}`}
+                    className="inline-flex items-center gap-1.5 font-sans font-semibold text-ember group-hover:text-ember-bright text-xs sm:text-sm transition-colors cursor-pointer"
+                  >
+                    <span>View case study</span>
+                    <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
+                  </Link>
+
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 font-mono text-[11px] text-bone-subtle hover:text-bone transition-colors"
+                  >
+                    <span>Live site</span>
+                    <ArrowUpRight size={13} />
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Pause hint */}
+        <div className="max-w-[1240px] mx-auto px-5 md:px-8 lg:px-12 mt-6">
+          <div className="flex items-center justify-center text-xs font-mono text-bone-subtle gap-2">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block animate-pulse" />
+            <span>Hover or tap any project to pause</span>
           </div>
         </div>
       </section>

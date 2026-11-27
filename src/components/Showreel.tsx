@@ -10,14 +10,14 @@ export function Showreel() {
           A theater, <em>not a tab.</em>
         </h2>
         <p className="lede">
-          Open a card and it expands into the player. The picture is a placeholder reel until the masters are online.
+          Three spec cuts. The Drift plays first. Open any card to switch the picture.
         </p>
       </header>
       <div className="theater">
         <div className="theater-bar">
-          <span>Screen 01</span>
-          <span>Placeholder picture</span>
-          <span>24 fps</span>
+          <span>Spec cuts</span>
+          <span>The Drift · 45s</span>
+          <span>1080p</span>
         </div>
         <div className="reel-row">
           {featured.map((item) => (

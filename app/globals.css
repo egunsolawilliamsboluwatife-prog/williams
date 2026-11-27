@@ -152,15 +152,16 @@ h1 em, h2 em { font-style: italic; }
   display: grid; grid-auto-flow: column; grid-auto-columns: 78%; gap: 12px;
   overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; padding-bottom: 4px;
 }
-.slot-reel { scroll-snap-align: start; aspect-ratio: 16 / 9; }
+.slot-reel { scroll-snap-align: start; }
 .slot-case { min-width: 0; }
-.film-card { position: relative; width: 100%; height: 100%; background: #0c1222; overflow: hidden; }
+.film-card { position: relative; width: 100%; height: auto; background: transparent; overflow: visible; }
 .film-card.case { height: auto; background: transparent; overflow: visible; }
-.poster-wrap { position: absolute; inset: 0; background: #10182c; }
+.poster-wrap { position: relative; aspect-ratio: 16 / 9; background: #10182c; overflow: hidden; }
 .film-card.case .poster-wrap { position: relative; aspect-ratio: 16 / 9; border: 1px solid var(--line); }
 .poster { position: absolute; inset: 0; background-size: cover; background-position: center; }
 .film-card video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; background: #000; }
-.meta { position: absolute; left: 12px; right: 12px; bottom: 12px; z-index: 2; display: grid; gap: 4px; pointer-events: none; }
+.meta { position: static; z-index: 2; display: grid; gap: 4px; padding: 12px 2px 0; pointer-events: none; }
+.film-card.case .meta { display: none; }
 .meta span { font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.72); }
 .meta strong { font-family: var(--serif); font-weight: 400; font-size: 1.25rem; color: white; }
 .play-mark {
@@ -187,7 +188,7 @@ h1 em, h2 em { font-style: italic; }
   background: rgba(6, 9, 17, 0.8); color: white; font-family: var(--mono);
   font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
 }
-.film-card.is-open .meta { top: 8px; bottom: auto; }
+.film-card.is-open .meta { display: grid; position: absolute; top: 8px; bottom: auto; left: 12px; right: 12px; padding: 0; }
 .backdrop { position: fixed; inset: 0; z-index: 70; background: rgba(0,0,0,0.72); opacity: 0; pointer-events: none; }
 .backdrop.on { opacity: 1; pointer-events: auto; }
 body.player-open .wordmark,
@@ -312,8 +313,8 @@ body.has-pill .hud-bl, body.has-pill .hud-br { opacity: 0; }
   .hud-br { bottom: 18px; right: 22px; }
   .topbar { top: 16px; }
   .block { padding: 20vh 7vw 20vh 6vw; }
-  .reel-row { grid-auto-flow: unset; grid-template-columns: repeat(5, minmax(0, 1fr)); overflow: visible; }
-  .work-cards { grid-template-columns: 1fr 1fr; gap: 28px; }
+  .reel-row { grid-auto-flow: unset; grid-template-columns: repeat(3, minmax(0, 1fr)); overflow: visible; }
+  .work-cards { grid-template-columns: 1fr; gap: 28px; }
   .scroll-hint {
     display: flex; align-items: center; gap: 10px; position: absolute; z-index: 2;
     left: 50%; bottom: 22px; transform: translateX(-50%);

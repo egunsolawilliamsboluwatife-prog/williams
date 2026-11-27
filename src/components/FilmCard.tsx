@@ -14,17 +14,17 @@ export function FilmCard({ item, variant }: { item: WorkItem; variant: "reel" | 
         data-film={item.id}
         role={isOpen ? "dialog" : undefined}
         aria-modal={isOpen ? true : undefined}
-        aria-label={isOpen ? `${item.style} placeholder` : undefined}
+        aria-label={isOpen ? `${item.title}, spec cut` : undefined}
       >
         <div className="poster-wrap">
           <div className="poster" style={{ backgroundImage: `url("${item.poster}")` }} />
           <video src={item.src} poster={item.poster} playsInline preload="none" controls={isOpen} muted />
           <span className="play-mark">Play</span>
-          <div className="meta">
-            <span>{item.style}</span>
-            <strong>{item.title}</strong>
-          </div>
-          <button className="hit" type="button" onClick={() => open(item.id)} aria-label={`Play placeholder reel, ${item.style}`} />
+          <button className="hit" type="button" onClick={() => open(item.id)} aria-label={`Play spec cut, ${item.title}`} />
+        </div>
+        <div className="meta">
+          <span>Spec Cut · {item.style}</span>
+          <strong>{item.title}</strong>
         </div>
         {variant === "case" ? (
           <div className="case-copy">

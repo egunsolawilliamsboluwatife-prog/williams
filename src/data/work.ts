@@ -1,8 +1,7 @@
 /**
- * PLACEHOLDER LIBRARY
- * Every entry is a stand-in. Real masters replace `src` and `poster`
- * under /public/work/. Do not invent channel names, view counts,
- * clients, or testimonials.
+ * Finished spec cuts only. Each file is a 1080p, 45-second master in
+ * /public/work/. These are original spec pieces, not client work.
+ * Do not add channel names, view counts, or testimonials.
  */
 export const styles = [
   "Documentary & Maps",
@@ -25,103 +24,38 @@ export type WorkItem = {
   featured?: boolean;
 };
 
-const clip = "/work/placeholder.mp4";
-
 export const work: WorkItem[] = [
   {
-    id: "doc-1",
-    title: "Placeholder",
+    id: "map-doc",
+    title: "The Drift",
     style: "Documentary & Maps",
-    role: "Assembly, maps, grade",
-    description: "Placeholder — documentary and map edit. Case-study copy arrives with the picture.",
-    src: clip,
-    poster: "/work/posters/doc-1.svg",
+    role: "Spec Cut",
+    description:
+      "Spec cut, 45 seconds. The 1879–81 USS Jeannette Arctic expedition: an archival photograph, an animated map route, and the pack-ice drift.",
+    src: "/work/map-doc.mp4",
+    poster: "/work/map-doc_poster.jpg",
     featured: true,
   },
   {
-    id: "doc-2",
-    title: "Placeholder",
-    style: "Documentary & Maps",
-    role: "B-roll, pacing, grade",
-    description: "Placeholder — second documentary cut. Swap this card when the master is exported.",
-    src: clip,
-    poster: "/work/posters/doc-2.svg",
-  },
-  {
-    id: "biz-1",
-    title: "Placeholder",
+    id: "explainer",
+    title: "Why Airliners Cruise at 35,000 ft",
     style: "Business & Tech Explainers",
-    role: "Structure, motion, captions",
-    description: "Placeholder — business explainer. No client name until the real piece is cleared.",
-    src: clip,
-    poster: "/work/posters/biz-1.svg",
+    role: "Spec Cut",
+    description:
+      "Spec cut, 45 seconds. A vector aviation explainer with an altitude ruler, air-density visuals, and an efficiency curve.",
+    src: "/work/explainer.mp4",
+    poster: "/work/explainer_poster.jpg",
     featured: true,
   },
   {
-    id: "biz-2",
-    title: "Placeholder",
-    style: "Business & Tech Explainers",
-    role: "Screen capture, callouts",
-    description: "Placeholder — tech explainer with callouts. Poster and file are temporary.",
-    src: clip,
-    poster: "/work/posters/biz-2.svg",
-  },
-  {
-    id: "bio-1",
-    title: "Placeholder",
-    style: "Biography & Faceless",
-    role: "Narrative cut, b-roll",
-    description: "Placeholder — biography edit. The story copy is intentionally unfinished.",
-    src: clip,
-    poster: "/work/posters/bio-1.svg",
-    featured: true,
-  },
-  {
-    id: "bio-2",
-    title: "Placeholder",
-    style: "Biography & Faceless",
-    role: "Archival, voice, grade",
-    description: "Placeholder — faceless biography. Replace the still and the cut together.",
-    src: clip,
-    poster: "/work/posters/bio-2.svg",
-  },
-  {
-    id: "talk-1",
-    title: "Placeholder",
-    style: "Talking-Head",
-    role: "Multicam, pacing, captions",
-    description: "Placeholder — talking-head edit. Multicam notes land with the real project.",
-    src: clip,
-    poster: "/work/posters/talk-1.svg",
-    featured: true,
-  },
-  {
-    id: "talk-2",
-    title: "Placeholder",
-    style: "Talking-Head",
-    role: "Trim, captions, grade",
-    description: "Placeholder — a shorter talking-head pass. Title stays Placeholder for now.",
-    src: clip,
-    poster: "/work/posters/talk-2.svg",
-  },
-  {
-    id: "short-1",
-    title: "Placeholder",
+    id: "kinetic",
+    title: "The Map Is the Film",
     style: "Shorts & Motion",
-    role: "Cutdowns, motion graphics",
-    description: "Placeholder — short-form and motion edit. Graphics are not final.",
-    src: clip,
-    poster: "/work/posters/short-1.svg",
+    role: "Spec Cut",
+    description: "Spec cut, 45 seconds. Kinetic typography locked to a 120 BPM pulse.",
+    src: "/work/kinetic.mp4",
+    poster: "/work/kinetic_poster.jpg",
     featured: true,
-  },
-  {
-    id: "short-2",
-    title: "Placeholder",
-    style: "Shorts & Motion",
-    role: "Titles, rhythm, end card",
-    description: "Placeholder — motion cutdown. Drop the finished file in /public/work/.",
-    src: clip,
-    poster: "/work/posters/short-2.svg",
   },
 ];
 

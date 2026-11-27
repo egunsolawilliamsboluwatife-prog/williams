@@ -15,7 +15,7 @@ npm run dev
 
 ## Drop in real pictures
 
-All video entries live in `src/data/work.ts` (`title`, `style`, `role`, `description`, `src`, `poster`). They are placeholders titled “Placeholder”. Put masters and posters in `public/work/` and point `src` / `poster` at them. The shared stand-in is `public/work/placeholder.mp4`.
+All video entries live in `src/data/work.ts` (`title`, `style`, `role`, `description`, `src`, `poster`). The live set is three spec cuts in `public/work/`: `map-doc`, `explainer`, and `kinetic`. Add another master the same way, and leave a category out until its file exists.
 
 Grade stills are `public/work/raw.jpg` and `public/work/graded.jpg`.
 

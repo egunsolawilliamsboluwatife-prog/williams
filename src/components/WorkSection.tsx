@@ -10,11 +10,13 @@ export function WorkSection() {
           The cuts, <em>by style.</em>
         </h2>
         <p className="lede">
-          Placeholder case studies. Every title stays “Placeholder” until a real piece replaces it. No invented clients, counts, or quotes.
+          Three spec cuts, grouped by style. Categories without a finished master are not listed.
         </p>
       </header>
       <div className="work-groups">
-        {styles.map((style, index) => (
+        {styles
+          .filter((style) => work.some((item) => item.style === style))
+          .map((style, index) => (
           <div className="work-group" key={style}>
             <header>
               <p className="kicker">0{index + 1}</p>
